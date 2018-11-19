@@ -16,14 +16,16 @@ e.g.:
 clydeS -- 2999-12-31 23:59
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<Team Name (minus "team")>
-Kevin Lin
-Tianrun Liu
-Mohammed Jamil
-Sajed Nahian
+Hackstreet Boys
+Kevin Lin (linK)
+Tianrun Liu (liuT)
+Mohammed Jamil (jamilM)
+Sajed Nahian (nahianS)
 pd 6
 ---------------------
-<Project Title/Description>
+MyNextMovie
+A site you can use to find new movies that you might want to watch, with reccomendations tailored to your taste!
+You can also find out what your friends like if they use the site.
 
 
  ______   ______   __   __   __       ______   _______     
