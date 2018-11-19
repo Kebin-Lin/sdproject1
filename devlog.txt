@@ -39,7 +39,7 @@ You can also find out what your friends like if they use the site.
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-fristL -- TIMESTAMP
+linK, liuT, jamilM, nahianS -- TIMESTAMP
 --------------------------------------------------------------
-<Thing fristL did.>
+Design Doc
 ==============================================================
