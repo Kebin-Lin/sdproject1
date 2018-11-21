@@ -22,7 +22,7 @@ You can also find out what your friends like if they use the site.
 
 jamilM -- 2018-11-20 9:18 PM
 --------------------------------------------------------------
-Added a base html file for later use and jinjafied the hompage
+Added a base html file for later use and jinjafied the homepage
 ==============================================================
 
 jamilM -- 2018-11-20 8:53 PM
