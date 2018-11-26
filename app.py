@@ -16,7 +16,7 @@ def input_field_page():
 @app.route("/profile",methods = ["POST", "GET"])
 def profile():
 	#test movielist
-	names=["The Dark Knight","Monty Python and the Holy Grail", "Shining","Hot Fuzz"]
+	names=["The Dark Knight","Deadpool", "Avengers","The Crow"]
 	ml={}
 	for name in names:
 		ml[name]=api.getOMDBdata(name)
