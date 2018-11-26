@@ -13,6 +13,16 @@ def input_field_page():
 	#print(api.getOMDbURL('Kung Fury', 1))
 	return render_template('homepage.html')
 
+@app.route("/profile",methods = ["POST", "GET"])
+def profile():
+	#test movielist
+	names=["The Dark Knight","Monty Python and the Holy Grail", "Shining","Hot Fuzz"]
+	ml={}
+	for name in names:
+		ml[name]=api.getOMDBdata(name)
+	#recm=[]
+	return render_template("profile.html",user="me", movielist=ml,recmovie=recm,)
+
 if __name__ == "__main__":
 	app.debug = True
 	app.run()

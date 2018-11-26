@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+	{% block head %}
+	{% block title %}<title>{{user}}</title> {% endblock %}
+	<link rel="stylesheet" href="cssfile.css">
+	{% endblock %}
+{% block content %}
+    {% for movies in movielist %}
+        <h2>{{movielist[movies]["Title"]}}</h2>
+        <p>{{movielist[movies]["Plot"]}}</p>
+        <img src="{{movielist[movies]["Poster"]}}">
+    {% endfor %}
+    <br>
+    
+{% endblock %}

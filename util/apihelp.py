@@ -1,3 +1,7 @@
+import urllib.request as urlrequest
+import urllib.parse as parse
+import json
+
 TasteDiveApiKey = '324021-MyNextMo-WHLW4A5Z'
 OMDbApiKey = '555fca05'
 def getTasteDiveURL (movies):
@@ -13,3 +17,28 @@ def getOMDbURL (searchQuery, pageNum):
 	searchUrl = '+'.join(searchTerms)
 	url = 'https://omdbapi.com/?s=' + searchUrl + '&page=' + str(pageNum) + '&apikey=' + OMDbApiKey
 	return url
+
+def getOMDBpage(searchQuery):
+	search=getOMDbURL(searchQuery,1)
+	req=urlrequest.Request(search,headers={'User-Agent': 'Mozilla/5.0'})
+	urlobj=urlrequest.urlopen(req)
+	searchdata=json.load(urlobj)
+	name=searchdata["Search"][0]["Title"]
+	searchTerms = name.split(' ')
+	searchUrl = '+'.join(searchTerms)
+	url = "https://omdbapi.com/?t=" + searchUrl + "&apikey=" + OMDbApiKey
+	return url
+
+def getOMDBdata(searchQuery):
+	moviedata={"Title":"","Plot":"","Poster":""}
+	movieurl=getOMDBpage(searchQuery)
+	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
+	urlobj=urlrequest.urlopen(req)
+	data=json.load(urlobj)
+	for keys in moviedata:
+		moviedata[keys]=data[keys]
+	return moviedata
+		
+
+
+	
