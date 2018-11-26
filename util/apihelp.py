@@ -7,10 +7,18 @@ OMDbApiKey = '555fca05'
 def getTasteDiveURL (movies):
 	url = "https://tastedive.com/api/similar?q="
 	for movieTitle in movies:
-		url += 'movie:' + movieTitle + ','
+		searchTerms = movieTitle.split(' ')
+		searchUrl = '+'.join(searchTerms)
+		url += 'movie:' + searchUrl + ','
 	url = url[:-1]
 	url += '&k=' + TasteDiveApiKey
 	return url
+def getTasteDiveData(movies):
+	recurl=getTasteDiveURL(movies)
+	req=urlrequest.Request(recurl,headers={'User-Agent': 'Mozilla/5.0'})
+	urlobj=urlrequest.urlopen(req)
+	data=json.load(urlobj)
+	return data["Similar"]["Results"]
 
 def getOMDbURL (searchQuery, pageNum):
 	searchTerms = searchQuery.split(' ')

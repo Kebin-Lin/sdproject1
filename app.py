@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, url_for, redirect
-import os
+import os,random
 
 from util import apihelp as api
 
@@ -20,7 +20,10 @@ def profile():
 	ml={}
 	for name in names:
 		ml[name]=api.getOMDBdata(name)
-	#recm=[]
+	recm={}
+	recommendations=api.getTasteDiveData(names)
+	testmovie=recommendations[random.randint(0,9)]["Name"]
+	recm=api.getOMDBdata(testmovie)
 	return render_template("profile.html",user="me", movielist=ml,recmovie=recm,)
 
 if __name__ == "__main__":
