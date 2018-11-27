@@ -31,7 +31,10 @@ Added a functions to help with interacting with the database
   - getMovies(username) returns the list of movies liked by a user
   - getComments(movieName) returns the list of comments left for a movie
 ==============================================================
-
+liuT -- 2018-11-26 10:56 PM
+--------------------------------------------------------------
+Finished login/register panel.
+==============================================================
 jamilM -- 2018-11-26 7:10 PM
 --------------------------------------------------------------
 Added a necessary elements of the profile page formatting required
@@ -75,3 +78,4 @@ liuT -- 2018-11-19 12:33 PM
 --------------------------------------------------------------
 Worked on homepage.html
 ==============================================================
+
