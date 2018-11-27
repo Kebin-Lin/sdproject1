@@ -20,6 +20,17 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+linK -- 2018-11-26 8:55 PM
+--------------------------------------------------------------
+Added a functions to help with interacting with the database
+  - registerUser(username, password) to add a user
+  - addFriend(username, friendName) to add a friend
+  - addComment(movieName, comment, username) to add a comment for a movie
+  - auth(username, password) to check user credentials
+  - addMovie(username, movieName) to add a movie to a user's list of liked movies
+  - getMovies(username) returns the list of movies liked by a user
+  - getComments(movieName) returns the list of comments left for a movie
+==============================================================
 
 jamilM -- 2018-11-26 7:10 PM
 --------------------------------------------------------------
