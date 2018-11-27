@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, session, url_for, redirect, flash
-import os
+from flask import Flask, render_template, request, session, url_for, redirect
+import os,random
 
 from util import apihelp as api
 
@@ -21,6 +21,19 @@ def input_field_page():
 		debugPrint("logged in as " + session["username"])
 	#print(api.getOMDbURL('Kung Fury', 1))
 	return render_template('homepage.html')
+
+@app.route("/profile",methods = ["POST", "GET"])
+def profile():
+	#test movielist
+	names=["The Dark Knight","Deadpool", "Avengers","The Crow"]
+	ml={}
+	for name in names:
+		ml[name]=api.getOMDBdata(name)
+	recm={}
+	recommendations=api.getTasteDiveData(names)
+	testmovie=recommendations[random.randint(0,9)]["Name"]
+	recm=api.getOMDBdata(testmovie)
+	return render_template("profile.html",user="me", movielist=ml,recmovie=recm,)
 
 @app.route("/auth", methods=["POST"])
 def auth_account():
