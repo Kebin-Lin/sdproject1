@@ -70,8 +70,10 @@
 			{% endblock %}
 
 
-{% block content %}
-<div style="background-image: url(https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg)">
+{% block intro %}
+	<div style="background-image: url(https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg)">
+      <div class="container" >
+
 			{%set msgs = get_flashed_messages()%}
 			
   				
@@ -170,8 +172,9 @@
 
 				</div>
 		</div>		<!-- end of jumbotron -->
-</div>					 
-
-
+	 &copy Hackstreet Boys 2018				 
+</div>
+       
+      </div>
 
 {% endblock %}
