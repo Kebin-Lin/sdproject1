@@ -17,6 +17,23 @@ def registerUser(username, password):
     closeDB(db)
     return "Account creation successful"
 
+def auth(username, password):
+
+    '''This function returns a string regarding the status of an attempted login.
+    '''
+
+    #Searches if the user exists
+    for i in c.execute("SELECT password FROM users WHERE username = ?",(username,)):
+        #Check if passwords match
+        if i[0] == password:
+            closeDB(db)
+            return "Login Successful"
+        closeDB(db)
+        return "Incorrect Password"
+    else:
+        closeDB(db)
+        return "User does not exist"
+
 def addFriend(username,friendName):
 
     '''This function adds a friend for a user into the friends table.
@@ -40,6 +57,21 @@ def addFriend(username,friendName):
     closeDB(db)
     return "Friend successfully added"
 
+def getFriends(username):
+
+    '''Returns a list of friends added by a user
+    '''
+
+    output = []
+    db,c = getDBCursor()
+    #Looks for friends
+    for i in c.execute("SELECT friendName FROM friends WHERE username = ?",(username,)):
+        #Appends the friends to a list
+        output.append(i[0])
+    closeDB(db)
+    #Returns the list of friends (empty list if user doesn't exist or have any friends)
+    return output
+
 def addComment(movieName, comment, username):
 
     '''This function adds a comment for a movie into the comment table.
@@ -52,22 +84,20 @@ def addComment(movieName, comment, username):
     c.execute("INSERT INTO comments (movieName, comment, username) VALUES(?,?,?)",(movieName, comment, username,))
     closeDB(db)
 
-def auth(username, password):
+def getComments(movieName):
 
-    '''This function returns a string regarding the status of an attempted login.
+    '''Returns a list of comments for a movie
     '''
 
-    #Searches if the user exists
-    for i in c.execute("SELECT password FROM users WHERE username = ?",(username,)):
-        #Check if passwords match
-        if i[0] == password:
-            closeDB(db)
-            return "Login Successful"
-        closeDB(db)
-        return "Incorrect Password"
-    else:
-        closeDB(db)
-        return "User does not exist"
+    output = []
+    db,c = getDBCursor()
+    #Looks for comments
+    for i in c.execute("SELECT comment, username FROM comments WHERE movieName = ?",(movieName,)):
+        #Appends the comment information to a list as a tuple (comment, username,)
+        output.append((i[0],i[1],))
+    closeDB(db)
+    #Returns the list of comments (empty list if movie doesn't exist or have any comments)
+    return output
 
 def addMovie(username, movieName):
 
@@ -96,19 +126,31 @@ def getMovies(username):
     #Returns the list of movies (empty list of user doesn't exist or hasn't added any movies)
     return output
 
-def getComments(movieName):
+def addReview(movieName, review, username, rating):
 
-    '''Returns a list of comments for a movie
+    '''This function adds a review for a movie into the reviws table.
+
+    PREREQ: Username exists
+    '''
+
+    db,c = getDBCursor()
+    #Adds review
+    c.execute("INSERT INTO reviews (username, review, movieName, rating) VALUES(?,?,?,?)",(username, review, movieName, rating,))
+    closeDB(db)
+
+def getReviews(movieName):
+
+    '''Returns a list of reviews for a movie
     '''
 
     output = []
     db,c = getDBCursor()
-    #Looks for comments
-    for i in c.execute("SELECT comment, username FROM comments WHERE movieName = ?",(movieName,)):
-        #Appends the comment information to a list as a tuple (comment, username,)
+    #Looks for reviews
+    for i in c.execute("SELECT review, username FROM comments WHERE movieName = ?",(movieName,)):
+        #Appends the review information to a list as a tuple (review, username,)
         output.append((i[0],i[1],))
     closeDB(db)
-    #Returns the list of comments (empty list of movie doesn't exist or have any comments)
+    #Returns the list of reviews (empty list if movie doesn't exist or have any reviews)
     return output
 
 def getDBCursor():

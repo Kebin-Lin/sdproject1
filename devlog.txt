@@ -20,6 +20,15 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+linK -- 2018-11-27 12:30 PM
+--------------------------------------------------------------
+Added functions to help with interacting with the database
+  - getFriends(username) returns the list of friends added by a user
+  - addReview(movieName, review, username, rating) adds a review
+  - getReviews(movieName) returns a list of tuples (review, username,) for a movie
+Re-arranged functions so that closely related functions are closer
+==============================================================
+
 jamilM -- 2018-11-26 11:08 PM
 --------------------------------------------------------------
 Added docstrings to apihelp.py
@@ -85,4 +94,3 @@ liuT -- 2018-11-19 12:33 PM
 --------------------------------------------------------------
 Worked on homepage.html
 ==============================================================
-
