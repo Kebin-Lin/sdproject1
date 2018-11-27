@@ -20,9 +20,14 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+jamilM -- 2018-11-26 11:08 PM
+--------------------------------------------------------------
+Added docstrings to apihelp.py
+==============================================================
+
 linK -- 2018-11-26 8:55 PM
 --------------------------------------------------------------
-Added a functions to help with interacting with the database
+Added functions to help with interacting with the database
   - registerUser(username, password) to add a user
   - addFriend(username, friendName) to add a friend
   - addComment(movieName, comment, username) to add a comment for a movie
@@ -31,13 +36,15 @@ Added a functions to help with interacting with the database
   - getMovies(username) returns the list of movies liked by a user
   - getComments(movieName) returns the list of comments left for a movie
 ==============================================================
+
 liuT -- 2018-11-26 10:56 PM
 --------------------------------------------------------------
 Finished login/register panel.
 ==============================================================
+
 jamilM -- 2018-11-26 7:10 PM
 --------------------------------------------------------------
-Added a necessary elements of the profile page formatting required
+Added a necessary elements of the profile page,but formatting is required
 ==============================================================
 
 linK -- 2018-11-26 12:16 PM

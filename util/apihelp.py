@@ -5,6 +5,9 @@ import json
 TasteDiveApiKey = '324021-MyNextMo-WHLW4A5Z'
 OMDbApiKey = '555fca05'
 def getTasteDiveURL (movies):
+	'''
+		This function uses the APIKey shown above to return a url to data on the similar movies found by TasteDive
+	'''
 	url = "https://tastedive.com/api/similar?q="
 	for movieTitle in movies:
 		searchTerms = movieTitle.split(' ')
@@ -14,6 +17,9 @@ def getTasteDiveURL (movies):
 	url += '&k=' + TasteDiveApiKey
 	return url
 def getTasteDiveData(movies):
+	'''
+		This function extracts the data from the JSON file from the url acquired by getTasteDiveURL
+	'''
 	recurl=getTasteDiveURL(movies)
 	req=urlrequest.Request(recurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)
@@ -21,12 +27,18 @@ def getTasteDiveData(movies):
 	return data["Similar"]["Results"]
 
 def getOMDbURL (searchQuery, pageNum):
+	'''
+		Returns the url to certain page of search results on OMDB that match the searchQuery
+	'''
 	searchTerms = searchQuery.split(' ')
 	searchUrl = '+'.join(searchTerms)
 	url = 'https://omdbapi.com/?s=' + searchUrl + '&page=' + str(pageNum) + '&apikey=' + OMDbApiKey
 	return url
 
 def getOMDBpage(searchQuery):
+	'''
+		Returns the OMDB url for the first searh result
+	'''
 	search=getOMDbURL(searchQuery,1)
 	req=urlrequest.Request(search,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)
@@ -38,6 +50,9 @@ def getOMDBpage(searchQuery):
 	return url
 
 def getOMDBdata(searchQuery):
+	'''
+		Returns the title,plot and poster of a movie from the url returned by getOMDBpage
+	'''
 	moviedata={"Title":"","Plot":"","Poster":""}
 	movieurl=getOMDBpage(searchQuery)
 	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
