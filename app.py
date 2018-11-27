@@ -60,7 +60,7 @@ def create_account():
 			return redirect(url_for("input_field_page"))
 	else:
 		flash("Password do not match")
-return redirect(url_for("sign_up_page"))
+		return redirect(url_for("sign_up_page"))
 
 def _temp_login(username, password):
 	return username == hardcodedUser["username"] and password == hardcodedUser["password"]
