@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
-	{% block title %}My Next Movie{% endblock %}
+{% block title %}My Next Movie{% endblock %}
 
-		{% block externalcss%}	
-	<link rel="stylesheet" href="cssfile.css">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script> 
-		$(function() {
+{% block externalcss%}
+<link rel="stylesheet" href="cssfile.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+$(function() {
 
-    $('#login-form-link').click(function(e) {
+	$('#login-form-link').click(function(e) {
 		$("#login-form").delay(100).fadeIn(100);
- 		$("#register-form").fadeOut(100);
+		$("#register-form").fadeOut(100);
 		$('#register-form-link').removeClass('active');
 		$(this).addClass('active');
 		e.preventDefault();
 	});
 	$('#register-form-link').click(function(e) {
 		$("#register-form").delay(100).fadeIn(100);
- 		$("#login-form").fadeOut(100);
+		$("#login-form").fadeOut(100);
 		$('#login-form-link').removeClass('active');
 		$(this).addClass('active');
 		e.preventDefault();
@@ -27,154 +27,156 @@
 
 });
 
-</script>	
+</script>
 
 {% endblock %}
-			{% block navbar %}
+{% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+	<a class="navbar-brand" href="#">Navbar</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul></div><div  style="margin-right: auto;">
-    <form class="form-inline my-2 my-lg-0" style="margin-right: auto;">
-      <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:teal">Search</button>
-    </form>
-	  </div>
-	  </div>
-</nav>				
-			{% endblock %}
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">About</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Dropdown
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#">Disabled</a>
+			</li>
+		</ul></div><div  style="margin-right: auto;">
+			<form class="form-inline my-2 my-lg-0" style="margin-right: auto;">
+				<input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:teal">Search</button>
+			</form>
+		</div>
+	</div>
+</nav>
+{% endblock %}
 
 
 {% block intro %}
-	<div style="background-image: url(https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg)">
-      <div class="container" >
+<div style="background-image: url(https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg)">
+	<div class="container" >
 
-			{%set msgs = get_flashed_messages()%}
-			
-  				
-				{%for each in msgs %}
-				<div class="alert alert-info" role="alert">
-				<p>{{each}}</p>					
-			</div>
-			{%endfor%}
-	
-		<div class="jumbotron">	
-			 <div class="row">
-					 
-					<div class="col-sm-6">
-						<h1 class="display-4">Welcome to MyNextMovie!</h1>
-						<p class="lead">where you can find the next movie you want to watch!</p>
-						<hr class="my-4">
-						<p></p>
-						<a class="btn btn-primary btn-lg" href="" role="button">Learn More</a>
-					</div>
-					 
-					<div class="row">
-			<div class="col-sm">
-				<div class="panel panel-login">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Login</a>
+		{%set msgs = get_flashed_messages()%}
+
+
+		{%for each in msgs %}
+		<div class="alert alert-info" role="alert">
+			<p>{{each}}</p>
+		</div>
+		{%endfor%}
+
+		<div class="jumbotron">
+			<div class="row">
+
+				<div class="col-sm-6">
+					<h1 class="display-4">Welcome to MyNextMovie!</h1>
+					<p class="lead">where you can find the next movie you want to watch!</p>
+					<hr class="my-4">
+					<p></p>
+					<a class="btn btn-primary btn-lg" href="" role="button">Learn More</a>
+				</div>
+
+				<div class="col-sm-3"></div>
+
+				<div class="row">
+					<div class="col-sm">
+						<div class="panel panel-login">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-6">
+										<a href="#" class="active" id="login-form-link">Login</a>
+									</div>
+									<div class="col-xs-6">
+										<a href="#" id="register-form-link">Register</a>
+									</div>
+								</div>
+								<hr>
 							</div>
-							<div class="col-xs-6">
-								<a href="#" id="register-form-link">Register</a>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-12">
+
+
+
+										<form id="login-form" action="/auth" method="post" role="form" style="display: block;">
+											<div class="form-group">
+												<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+											</div>
+											<div class="form-group">
+												<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+											</div>
+											<div class="form-group text-center">
+												<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+												<label for="remember"> Remember Me</label>
+											</div>
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-6 col-sm-offset-3">
+														<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" style="font-size: 14px"value="Log In">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="text-center">
+															<a href="/createaccount" tabindex="5" class="forgot-password">Forgot Password?</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+
+
+
+										<form id="register-form" action="/createaccount" method="post" role="form" style="display: none;">
+											<div class="form-group">
+												<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+											</div>
+											<div class="form-group">
+												<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+											</div>
+											<div class="form-group">
+												<input type="password" name="passwordConfirmation" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+											</div>
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-6 col-sm-offset-3">
+														<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" style="font-size: 14px"value="Register">
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
-						<hr>
 					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-12">
-								
-								
-								
-								<form id="login-form" action="/auth" method="post" role="form" style="display: block;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-									</div>
-									<div class="form-group text-center">
-										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> Remember Me</label>
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" style="font-size: 14px"value="Log In">
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													<a href="/createaccount" tabindex="5" class="forgot-password">Forgot Password?</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
-								
-								
-								
-								<form id="register-form" action="/createaccount" method="post" role="form" style="display: none;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-									</div>
-									<div class="form-group">
-										<input type="password" name="passwordConfirmation" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" style="font-size: 14px"value="Register">
-											</div>
-												</div>
-										</div>
-												</form>
-										</div>
-								</div>
-							</div>
-							</div>
-									</div>
-								</div>
-
 				</div>
+
+			</div>
 		</div>		<!-- end of jumbotron -->
-	 &copy Hackstreet Boys 2018				 
+		&copy Hackstreet Boys 2018
+	</div>
+
 </div>
-       
-      </div>
 
 {% endblock %}
