@@ -13,7 +13,7 @@ def registerUser(username, password):
         closeDB(db)
         return "User already exists"
     #Execute if username doesn't exist
-    c.execute("INSERT INTO users (username, password) VALUES(?,?)")
+    c.execute("INSERT INTO users (username, password) VALUES(?,?)",(username,password,))
     closeDB(db)
     return "Account creation successful"
 
@@ -22,6 +22,7 @@ def auth(username, password):
     '''This function returns a string regarding the status of an attempted login.
     '''
 
+    db,c = getDBCursor()
     #Searches if the user exists
     for i in c.execute("SELECT password FROM users WHERE username = ?",(username,)):
         #Check if passwords match
@@ -158,6 +159,6 @@ def getDBCursor():
     cursor = db.cursor()
     return db,cursor
 
-def closeDB(inDB):
+def closeDB(db):
     db.commit()
     db.close()
