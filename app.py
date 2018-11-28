@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, session, url_for, redirect, flash
-import os
+import os,random
 
 from util import apihelp as api
+from util import dbtools
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -22,6 +23,34 @@ def input_field_page():
 	#print(api.getOMDbURL('Kung Fury', 1))
 	return render_template('homepage.html')
 
+@app.route("/profile",methods = ["POST", "GET"])
+def profile():
+	#test movielist
+	#if "username" in session:
+	#if request.args.get("movie") != None:
+	#	query=request.args.get("movie")
+	#	dbtools.addMovie(session["username"],api.getOMDBdata(query)["Title"])
+	names=["The Dark Knight","Deadpool", "Avengers","The Crow"]
+	#when authentication system is working
+	#names=dbtools.getMovies(session["username"])
+	ml={}
+	for name in names:
+		ml[name]=api.getOMDBdata(name)
+	recm={}
+	recommendations=api.getTasteDiveData(names)
+	testmovie=recommendations[random.randint(0,9)]["Name"]
+	recm=api.getOMDBdata(testmovie)
+	return render_template("profile.html",user="me", movielist=ml,recmovie=recm,)
+
+@app.route("/addmovie",methods = ["GET","POST"])
+def add_movies():
+	query=""
+	results=[]
+	if request.args.get("movie") != None:
+		query=request.args.get("movie")
+		results=api.getOMDBsearch(query)
+	return render_template("addmovie.html",searchresults=results)
+	
 @app.route("/auth", methods=["POST"])
 def auth_account():
 	if _temp_login(request.form["username"], request.form["password"]):

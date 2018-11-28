@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+	{% block head %}
+	{% block title %}Add Movie{% endblock %}
+	<!--<link rel="stylesheet" href="cssfile.css">-->
+	{% endblock %}
+{% block content %}
+    <h1>Add a movie</h1>
+    <form action="/addmovie">
+        Search: <input type="text" name="movie">
+        <input type="submit" value="Search">
+    </form>
+    {% for results in searchresults %}
+    <div class="card" style="width: 20rem;">
+        <img class="card-img-top" src={{results["Poster"]}} alt="Card image cap">
+        <div class="card-body">
+            <button type="button" class="btn btn-link">{{results["Title"]}}</button>
+            <br>
+            <a href="/profile?movie={{results["Title"]}}">
+                <button type="button" class="btn btn-primary">
+                    Add
+                </button>
+            </a>
+            
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+    
+{% endblock %}

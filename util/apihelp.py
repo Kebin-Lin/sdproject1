@@ -35,6 +35,13 @@ def getOMDbURL (searchQuery, pageNum):
 	url = 'https://omdbapi.com/?s=' + searchUrl + '&page=' + str(pageNum) + '&apikey=' + OMDbApiKey
 	return url
 
+def getOMDBsearch(searchQuery):
+	url=getOMDbURL(searchQuery,1)
+	req=urlrequest.Request(url,headers={'User-Agent': 'Mozilla/5.0'})
+	urlobj=urlrequest.urlopen(req)
+	searchresults=json.load(urlobj)
+	return searchresults["Search"]
+
 def getOMDBpage(searchQuery):
 	'''
 		Returns the OMDB url for the first searh result
