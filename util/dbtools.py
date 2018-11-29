@@ -154,6 +154,32 @@ def getReviews(movieID):
     #Returns the list of reviews (empty list if movie doesn't exist or have any reviews)
     return output
 
+def addMovieInfo(movieID, title, img):
+
+    '''This function adds a OMDB movie ID to a table with the title and image
+       associated to save API calls.
+    '''
+
+    db,c = getDBCursor()
+    #Adds ID
+    c.execute("INSERT INTO movieInfo (movieID, title, img) VALUES(?,?,?)",(movieID, title, img,))
+    closeDB(db)
+
+def getMovieInfo(movieID):
+
+    '''This function attempts to get the title and image associated with a movie
+       ID from the database. It will return None if it does not exist.
+    '''
+
+    db,c = getDBCursor()
+    #Search for ID
+    output = None
+    for i in c.execute("SELECT title, img FROM movieInfo WHERE movieID = ?",(movieID,)):
+        #Sets output to a tuple (title, img,)
+        output = (i[0],i[1],)
+    closeDB(db)
+    return output
+
 def getDBCursor():
     db = sqlite3.connect("data/info.db")
     cursor = db.cursor()

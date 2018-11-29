@@ -20,5 +20,8 @@ c.execute("CREATE TABLE IF NOT EXISTS moviesAdded(username TEXT, movieID TEXT)")
 #Creates table to store friends
 c.execute("CREATE TABLE IF NOT EXISTS friends(username TEXT, friendName TEXT)")
 
+#Creates table to store movie pic/title
+c.execute("CREATE TABLE IF NOT EXISTS movieInfo(movieID TEXT, title TEXT, img TEXT)")
+
 db.commit()
 db.close()
