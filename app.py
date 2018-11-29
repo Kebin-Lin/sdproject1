@@ -22,16 +22,18 @@ def profile_method():
 	if "username" in session:
 		if request.args.get("movie") != None:
 			query=request.args.get("movie")
-			print(api.getOMDBdata(query,True)["Title"])
 			db.addMovie(session["username"],query)
 		ids=db.getMovies(session["username"])
+		names=[]
 		ml={}
 		for id in ids:
 			ml[id]=api.getOMDBdata(id,True)
+			names.append(ml[id]["Title"])
+		print(names)
 		recm={}
-		# recommendations=api.getTasteDiveData(names)
-		# # testmovie=recommendations[random.randint(0,9)]["Name"]
-		# recm=api.getOMDBdata(testmovie)
+		recommendations=api.getTasteDiveData(names)
+		testmovie=recommendations[random.randint(0,len(recommendations))]["Name"]
+		recm=api.getOMDBdata(testmovie,False)
 		return render_template("profile.html",user="me", movielist=ml,recmovie=recm,)
 	else:
 		return redirect(url_for("input_field_page"))

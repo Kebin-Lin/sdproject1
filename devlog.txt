@@ -22,6 +22,11 @@ You can also find out what your friends like if they use the site.
 
 jamilM -- 2018-11-28 7:08 PM
 --------------------------------------------------------------
+Recommended Movie now appears on profile page and movieid now used to store movie list
+==============================================================
+
+jamilM -- 2018-11-28 7:08 PM
+--------------------------------------------------------------
 Movies can be added to profile
 ==============================================================
 

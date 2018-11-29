@@ -65,10 +65,11 @@ def getOMDBdata(searchQuery,isID):
 	'''
 	moviedata={"Title":"","Plot":"","Poster":""}
 	movieurl=getOMDBpage(searchQuery,isID)
-	print(movieurl)
 	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)
 	data=json.load(urlobj)
+
+
 	for keys in moviedata:
 		moviedata[keys]=data[keys]
 	return moviedata
