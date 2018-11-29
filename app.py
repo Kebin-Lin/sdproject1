@@ -91,6 +91,8 @@ def user_logout():
 	if "username" in session:
 		session.pop("username")
 	return redirect(url_for("input_field_page"))
+
+
 if __name__ == "__main__":
 	app.debug = True
 	app.run()
