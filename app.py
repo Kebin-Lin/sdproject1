@@ -31,9 +31,10 @@ def profile_method():
 			names.append(ml[id]["Title"])
 		print(names)
 		recm={}
-		recommendations=api.getTasteDiveData(names)
-		testmovie=recommendations[random.randint(0,len(recommendations))]["Name"]
-		recm=api.getOMDBdata(testmovie,False)
+		if names != []:
+			recommendations=api.getTasteDiveData(names)
+			testmovie=recommendations[random.randint(0,len(recommendations))]["Name"]
+			recm=api.getOMDBdata(testmovie,False)
 		return render_template("profile.html",user="me", movielist=ml,recmovie=recm,)
 	else:
 		return redirect(url_for("input_field_page"))
