@@ -20,14 +20,14 @@ def profile_method():
 	print("This is running")
 	#test movielist
 	if "username" in session:
-		name = []
 		if request.args.get("movie") != None:
 			query=request.args.get("movie")
-			db.addMovie(session["username"],api.getOMDBdata(query)["Title"])
-		names=db.getMovies(session["username"])
+			print(api.getOMDBdata(query,True)["Title"])
+			db.addMovie(session["username"],query)
+		ids=db.getMovies(session["username"])
 		ml={}
-		for name in names:
-			ml[name]=api.getOMDBdata(name)
+		for id in ids:
+			ml[id]=api.getOMDBdata(id,True)
 		recm={}
 		# recommendations=api.getTasteDiveData(names)
 		# # testmovie=recommendations[random.randint(0,9)]["Name"]

@@ -32,7 +32,7 @@ def getOMDbURL (searchQuery, pageNum):
 	'''
 	searchTerms = searchQuery.split(' ')
 	searchUrl = '+'.join(searchTerms)
-	url = 'https://omdbapi.com/?s=' + searchUrl + '&page=' + str(pageNum) + '&apikey=' + OMDbApiKey
+	url = 'https://omdbapi.com/?s=' + searchUrl + '&page=' + str(pageNum) + '&apikey=' + OMDbApiKey +"&type=movie"
 	return url
 
 def getOMDBsearch(searchQuery):
@@ -42,26 +42,30 @@ def getOMDBsearch(searchQuery):
 	searchresults=json.load(urlobj)
 	return searchresults["Search"]
 
-def getOMDBpage(searchQuery):
+def getOMDBpage(searchQuery,isID):
 	'''
 		Returns the OMDB url for the first searh result
 	'''
-	search=getOMDbURL(searchQuery,1)
-	req=urlrequest.Request(search,headers={'User-Agent': 'Mozilla/5.0'})
-	urlobj=urlrequest.urlopen(req)
-	searchdata=json.load(urlobj)
-	name=searchdata["Search"][0]["Title"]
-	searchTerms = name.split(' ')
-	searchUrl = '+'.join(searchTerms)
-	url = "https://omdbapi.com/?t=" + searchUrl + "&apikey=" + OMDbApiKey
+	if isID:
+		url = "https://omdbapi.com/?i=" + searchQuery + "&apikey=" + OMDbApiKey +"&type=movie"
+	else:
+		search=getOMDbURL(searchQuery,1)
+		req=urlrequest.Request(search,headers={'User-Agent': 'Mozilla/5.0'})
+		urlobj=urlrequest.urlopen(req)
+		searchdata=json.load(urlobj)
+		name=searchdata["Search"][0]["Title"]
+		searchTerms = name.split(' ')
+		searchUrl = '+'.join(searchTerms)
+		url = "https://omdbapi.com/?t=" + searchUrl + "&apikey=" + OMDbApiKey
 	return url
 
-def getOMDBdata(searchQuery):
+def getOMDBdata(searchQuery,isID):
 	'''
 		Returns the title,plot and poster of a movie from the url returned by getOMDBpage
 	'''
 	moviedata={"Title":"","Plot":"","Poster":""}
-	movieurl=getOMDBpage(searchQuery)
+	movieurl=getOMDBpage(searchQuery,isID)
+	print(movieurl)
 	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)
 	data=json.load(urlobj)
