@@ -87,7 +87,7 @@ def create_account():
 		flash("Password do not match")
 	return redirect(url_for("input_field_page"))
 
-@app.route("/logout",methods=["POST"])
+@app.route("/logout",methods=["POST","GET"])
 def user_logout():
 	if "username" in session:
 		session.pop("username")
