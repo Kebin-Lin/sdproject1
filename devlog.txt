@@ -20,14 +20,14 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-jamilM -- 2018-11-28 7:08 PM
+jamilM -- 2018-11-28 11:37 PM
 --------------------------------------------------------------
-Recommended Movie now appears on profile page and movieid now used to store movie list
+Recommended Movie now appears on profile page
 ==============================================================
 
 jamilM -- 2018-11-28 7:08 PM
 --------------------------------------------------------------
-Movies can be added to profile
+Movies can be added to profile and movieid now used to store movie list
 ==============================================================
 
 linK -- 2018-11-27 12:30 PM
