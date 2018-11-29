@@ -86,13 +86,11 @@ def create_account():
 		flash("Password do not match")
 	return redirect(url_for("input_field_page"))
 
-
-def fakeCheckIfUserInDB(username):
-	return username == "test"
-
-def _temp_login(username, password):
-	return username == hardcodedUser["username"] and password == hardcodedUser["password"]
-
+@app.route("/logout",methods=["POST"])
+def user_logout():
+	if "username" in session:
+		session.pop("username")
+	return redirect(url_for("input_field_page"))
 if __name__ == "__main__":
 	app.debug = True
 	app.run()
