@@ -19,6 +19,14 @@ You can also find out what your friends like if they use the site.
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+jamilM -- 2018-11-30 1:12
+--------------------------------------------------------------
+Movies are now added via a post request
+Movie data is now stored in database to avoid multiple api calls
+Solved some issues with passing the OMDb API non-alphanumeric characters
+===============================================================
+
 liuT -- 2018-11-30 12:11 PM
 --------------------------------------------------------------
 Good news:
