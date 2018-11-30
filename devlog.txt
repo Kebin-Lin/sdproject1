@@ -19,6 +19,15 @@ You can also find out what your friends like if they use the site.
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+liuT -- 2018-11-30 12:11 PM
+--------------------------------------------------------------
+Good news:
+ 1.carousel fully functional;
+ 2.can show user movies in order;
+Bad news:
+ 1.Unable to change carousel indicator color; (looks bad on a white background)
+ 2.if plot sentence is too long, the sentence won't wrap;
+==============================================================
 
 linK -- 2018-11-29 7:02 PM
 --------------------------------------------------------------
