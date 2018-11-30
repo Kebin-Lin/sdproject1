@@ -42,7 +42,7 @@ def profile_method():
 				recommendedmovie[testmovie]=api.getOMDBdata(testmovie,False)
 				i+=1
 			print(recommendedmovie)
-		return render_template("profile.html",user="me", movielist=ml,recmovie=recommendedmovie,)
+		return render_template("profile.html",user="me", movielist=ml,recmovies=recommendedmovie,)
 	else:
 		return redirect(url_for("input_field_page"))
 

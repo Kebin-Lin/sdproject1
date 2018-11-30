@@ -76,7 +76,7 @@ $('.carouseloo').carousel(cycle)
 {% block intro %}<div class="container">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <ol  class="carousel-indicators">
+    <ol  class="carousel-indicators" stlye="border: 2px solid black">
       <li data-target="#myCarousel" data-slide-to="0" class="active" style="color:black;"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -86,103 +86,24 @@ $('.carouseloo').carousel(cycle)
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
+
+	{% for movie in recmovies %}
             <div class="item active">
       <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
       
       	<div class="row">
       		<div class="column-md-2">
-        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
+        		<img src="{{movie["Poster"]}}" alt="" style="width:90%;padding:50px">
         	</div>
         	
         	<div class="column-md-2" style="overflow-wrap: break-word;" >
-						<h2>{{recmovie["Title"]}}</h2>
-						
-						<!--<p>
-						{{recmovie["Plot"]}}
-                        </p>-->
-                        <!--<div container>
-                                <div class="card" style="width: 18rem;height: 4.5rem">
-                                    <div class="row">
-                                        <div class="col-md-7">
-                                                <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" alt="">
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="card-body">
-                                                <p class="card-text" style="size:20%;">{{recmovie["imdbRating"]}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>-->      
+						<h2>{{movie["Title"]}}</h2>
+				
 					</div>
 				</div>
 				</div>
       </div>
-
-      <div class="item">
-      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
-      	<div class="row">
-      		<div class="column-md-2">
-        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
-        	</div>
-        	<div class="column-md-2" style="overflow-wrap: break-word;">
-						<h2>{{recmovie["Title"]}}</h2>
-											<!--	
-						<p>{{recmovie["Plot"]}}</p>
-					-->
-					</div>
-				</div>
-				</div>
-      </div>
-    
-     <div class="item">
-      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
-      	<div class="row">
-      		<div class="column-md-2">
-        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
-        	</div>
-        	<div class="column-md-2" style="overflow-wrap: break-word;">
-						<h2>{{recmovie["Title"]}}</h2>
-											<!--	
-						<p>{{recmovie["Plot"]}}</p>
-					-->
-					</div>
-				</div>
-				</div>
-      </div>
-      
-<div class="item">
-      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
-      	<div class="row">
-      		<div class="column-md-2">
-        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
-        	</div>
-        	<div class="column-md-2" style="overflow-wrap: break-word;">
-						<h2>{{recmovie["Title"]}}</h2>
-											<!--	
-						<p>{{recmovie["Plot"]}}</p>
-					-->
-					</div>
-				</div>
-				</div>
-      </div>
-<div class="item">
-      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
-      	<div class="row">
-      		<div class="column-md-2">
-        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
-        	</div>
-        	<div class="column-md-2" style="overflow-wrap: break-word;">
-						<h2>{{recmovie["Title"]}}</h2>
-                                      
-                        <!--	
-						<p>{{recmovie["Plot"]}}</p>
-					-->
-					</div>
-				</div>
-				</div>
-      </div>
-    </div>
+	{% endfor %}
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -203,21 +124,42 @@ $('.carouseloo').carousel(cycle)
 
 
 
-<h1>Your Movies</h1>
+<h1>Your Movies</h1><!--
+{% for movies in movielist %}
+<div class="container">
+<div class="card">
+    <img class="card-img-top" src="{{movielist[movies][1]}}" alt="Card image cap" style="width:20%;">
+    <div class="card-body">
+      <h2 class="card-title">{{movielist[movies][0]}}</h2>
+    </div>
+  </div>
+</div>
+{% endfor %}-->
+
+
     {% for movies in movielist %}
     
-    <div class="row">
-    <div class="col-">
-        <img src="{{movielist[movies][1]}}">
-    </div>
-    <div class="col-">
-        <h2>{{movielist[movies][0]}}</h2>
+    <div class="row" style="border:3px solid #bdd4f9;">
+	<div style="padding: 10px 10px 3px 3px;">
+		<div class="col-">
+		    <img src="{{movielist[movies][1]}}">
+		</div>
+		<div class="col-">
+		    <h2>{{movielist[movies][0]}}</h2>
+		 </div>
+		 </div>
      </div>
-     </div>
-     
      <br>
     {% endfor %}
    
     <br>
-  </div>
+  </div> 
 {% endblock %}
+
+
+
+
+
+
+
+
