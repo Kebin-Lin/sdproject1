@@ -16,9 +16,7 @@ $('.carouseloo').carousel(cycle)
 
 
 
-<script>
-  $('.carouseloo').carousel()
-</script>
+
 	{% endblock %}
 {% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -78,28 +76,98 @@ $('.carouseloo').carousel(cycle)
 {% block intro %}<div class="container">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <ol  class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active" style="color:black;"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-      <div class="item active">
-        <img src="{{recmovie["Poster"]}}" alt="" style="width:auto;">
-		<h1>this is cool!</h1>
+            <div class="item active">
+      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
+      
+      	<div class="row">
+      		<div class="column-md-2">
+        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
+        	</div>
+        	
+        	<div class="column-md-2" >
+						<h2>{{recmovie["Title"]}}</h2>
+						
+						<p style="overflow-wrap: break-word;">
+						{{recmovie["Plot"]}}
+						</p>
+						
+				
+					</div>
+				</div>
+				</div>
       </div>
 
       <div class="item">
-        <img src="{{recmovie["Poster"]}}" alt="" style="width:auto;">
-<h1>this is cool!</h1>
+      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
+      	<div class="row">
+      		<div class="column-md-2">
+        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
+        	</div>
+        	<div class="column-md-2" style="overflow-wrap: break-word;">
+						<h2>{{recmovie["Title"]}}</h2>
+											<!--	
+						<p>{{recmovie["Plot"]}}</p>
+					-->
+					</div>
+				</div>
+				</div>
       </div>
     
-      <div class="item">
-		<div class=>
-        <img src="{{recmovie["Poster"]}}" alt="" style="width:auto;">
-<h1>this is cool!</h1>
+     <div class="item">
+      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
+      	<div class="row">
+      		<div class="column-md-2">
+        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
+        	</div>
+        	<div class="column-md-2" style="overflow-wrap: break-word;">
+						<h2>{{recmovie["Title"]}}</h2>
+											<!--	
+						<p>{{recmovie["Plot"]}}</p>
+					-->
+					</div>
+				</div>
+				</div>
+      </div>
+      
+<div class="item">
+      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
+      	<div class="row">
+      		<div class="column-md-2">
+        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
+        	</div>
+        	<div class="column-md-2" style="overflow-wrap: break-word;">
+						<h2>{{recmovie["Title"]}}</h2>
+											<!--	
+						<p>{{recmovie["Plot"]}}</p>
+					-->
+					</div>
+				</div>
+				</div>
+      </div>
+<div class="item">
+      <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
+      	<div class="row">
+      		<div class="column-md-2">
+        		<img src="{{recmovie["Poster"]}}" alt="" style="width:90%;padding:50px">
+        	</div>
+        	<div class="column-md-2" style="overflow-wrap: break-word;">
+						<h2>{{recmovie["Title"]}}</h2>
+											<!--	
+						<p>{{recmovie["Plot"]}}</p>
+					-->
+					</div>
+				</div>
+				</div>
       </div>
     </div>
 
@@ -114,21 +182,31 @@ $('.carouseloo').carousel(cycle)
     </a>
   </div>
 </div>
+<br>
 {% endblock %}
 {% block content %}
 
+<div class="container" style="background-image:url(https://ak8.picdn.net/shutterstock/videos/3456578/thumb/1.jpg;background-size:cover;)">
 
 
-    <h1>Recommended Movie</h1>
-    <h2>{{recmovie["Title"]}}</h2>
-    <p>{{recmovie["Plot"]}}</p>
-    <img src="{{recmovie["Poster"]}}">
+
     <h1>Your Movies</h1>
     {% for movies in movielist %}
-        <h2>{{movielist[movies]["Title"]}}</h2>
-        <p>{{movielist[movies]["Plot"]}}</p>
-        <img src="{{movielist[movies]["Poster"]}}">
-    {% endfor %}
-    <br>
     
+    <div class="row">
+    <div class="col-">
+    	<img src="{{movielist[movies]["Poster"]}}">
+    </div>
+    <div class="col-">
+    
+        <h2>{{movielist[movies]["Title"]}}</h2>
+        <p style="white-space:pre-line;overflow-wrap: normal;">{{movielist[movies]["Plot"]}}</p>
+     </div>
+     </div>
+     
+     <br>
+    {% endfor %}
+   
+    <br>
+  </div>
 {% endblock %}
