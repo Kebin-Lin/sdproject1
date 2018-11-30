@@ -20,6 +20,11 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+linK -- 2018-11-29 7:02 PM
+--------------------------------------------------------------
+Updated the design document to reflect changes in the database structure
+==============================================================
+
 linK -- 2018-11-29 12:19 PM
 --------------------------------------------------------------
 Added table to store movie img and title based on movieID (OMDB)

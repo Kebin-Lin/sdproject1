@@ -20,8 +20,8 @@ def profile_method():
 	print("This is running")
 	#test movielist
 	if "username" in session:
-		if request.args.get("movie") != None:
-			query=request.args.get("movie")
+		if "add" in request.form:
+			query=request.form["add"]
 			db.addMovie(session["username"],query)
 		ids=db.getMovies(session["username"])
 		names=[]
