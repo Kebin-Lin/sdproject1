@@ -27,15 +27,19 @@ def profile_method():
 		names=[]
 		ml={}
 		for id in ids:
-			ml[id]=api.getOMDBdata(id,True)
-			names.append(ml[id]["Title"])
+			data=api.getOMDBdata(id,True)
+			if db.getMovieInfo(id) == None:
+				db.addMovieInfo(id,data["Title"],data["Poster"])
+			ml[id]=db.getMovieInfo(id)
+			print(ml)
+			names.append(ml[id][0])
 		print(names)
-		recm={}
+		recommendedmovie={}
 		if names != []:
 			recommendations=api.getTasteDiveData(names)
-			testmovie=recommendations[random.randint(0,len(recommendations))]["Name"]
-			recm=api.getOMDBdata(testmovie,False)
-		return render_template("profile.html",user="me", movielist=ml,recmovie=recm,)
+			testmovie=recommendations[random.randint(0,len(recommendations)-1)]["Name"]
+			recommendedmovie=api.getOMDBdata(testmovie,False)
+		return render_template("profile.html",user="me", movielist=ml,recmovie=recommendedmovie,)
 	else:
 		return redirect(url_for("input_field_page"))
 

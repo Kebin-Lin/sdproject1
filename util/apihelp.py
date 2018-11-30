@@ -14,7 +14,7 @@ def getTasteDiveURL (movies):
 		searchUrl = '+'.join(searchTerms)
 		url += 'movie:' + searchUrl + ','
 	url = url[:-1]
-	url += '&k=' + TasteDiveApiKey
+	url += '&k=' + TasteDiveApiKey +"&type=movies"
 	return url
 def getTasteDiveData(movies):
 	'''
@@ -30,8 +30,9 @@ def getOMDbURL (searchQuery, pageNum):
 	'''
 		Returns the url to certain page of search results on OMDB that match the searchQuery
 	'''
-	searchTerms = searchQuery.split(' ')
+	searchTerms = searchQuery.split()
 	searchUrl = '+'.join(searchTerms)
+	searchUrl = searchUrl.replace("&","and")
 	url = 'https://omdbapi.com/?s=' + searchUrl + '&page=' + str(pageNum) + '&apikey=' + OMDbApiKey +"&type=movie"
 	return url
 
@@ -53,9 +54,12 @@ def getOMDBpage(searchQuery,isID):
 		req=urlrequest.Request(search,headers={'User-Agent': 'Mozilla/5.0'})
 		urlobj=urlrequest.urlopen(req)
 		searchdata=json.load(urlobj)
+		print(searchQuery)
+		print(searchdata)
 		name=searchdata["Search"][0]["Title"]
-		searchTerms = name.split(' ')
+		searchTerms = name.split()
 		searchUrl = '+'.join(searchTerms)
+		searchUrl = searchUrl.replace("&","and")
 		url = "https://omdbapi.com/?t=" + searchUrl + "&apikey=" + OMDbApiKey
 	return url
 
@@ -63,7 +67,7 @@ def getOMDBdata(searchQuery,isID):
 	'''
 		Returns the title,plot and poster of a movie from the url returned by getOMDBpage
 	'''
-	moviedata={"Title":"","Plot":"","Poster":""}
+	moviedata={"Title":"","Plot":"","Poster":"","imdbRating":"","Metascore":""}
 	movieurl=getOMDBpage(searchQuery,isID)
 	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)

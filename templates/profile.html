@@ -206,12 +206,27 @@
     <h1>Recommended Movie</h1>
     <h2>{{recmovie["Title"]}}</h2>
     <p>{{recmovie["Plot"]}}</p>
+    <br>
+    <div container>
+        <div class="card" style="width: 18rem;height: 4.5rem">
+            <div class="row">
+                <div class="col-md-7">
+                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" alt="">
+                </div>
+                <div class="col-md-5">
+                    <div class="card-body">
+                        <p class="card-text" style="size:20%;">{{recmovie["imdbRating"]}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
     <img src="{{recmovie["Poster"]}}">
     <h1>Your Movies</h1>
     {% for movies in movielist %}
-        <h2>{{movielist[movies]["Title"]}}</h2>
-        <p>{{movielist[movies]["Plot"]}}</p>
-        <img src="{{movielist[movies]["Poster"]}}">
+        <h2>{{movielist[movies][0]}}</h2>
+        <img src="{{movielist[movies][1]}}">
     {% endfor %}
     <br>
     
