@@ -20,6 +20,12 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+jamilM -- 2018-11-30 12:17
+--------------------------------------------------------------
+API is called only when movie is not in database
+5 recommended movies are now passed to the template
+===============================================================
+
 jamilM -- 2018-11-30 1:12
 --------------------------------------------------------------
 Movies are now added via a post request
