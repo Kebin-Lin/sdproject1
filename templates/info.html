@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+	{% block head %}
+	{% block title %}{{title}}{% endblock %}
+	<!--<link rel="stylesheet" href="cssfile.css">-->
+    {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="jumbotron" >
+            <div class="row">
+                <div class="col-4">
+                    <img src="{{info['Poster']}}">
+                </div>
+                <div class="col-8">
+                    <h1>{{info['Title']}}</h1>
+                    <b>Released: </b>{{info["Released"]}}
+                    <b>Genre: </b>{{info["Genre"]}}
+                    <br><br>
+                    <b>Summary: </b>
+                    <p>{{info['Plot']}}</p>
+                    <div class="score" style="width: 30px;height: 30px;font-family: Arial;color: #FFFFFF;font-size: 20px;text-align: center;background-color:green;float:left">
+                        {{info["Metascore"]}}
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/2000px-Metacritic.svg.png" width="30" style="float:left">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" width="80" style="padding-left:20px;float:left">
+                    <div class="rating" style="font-size:20px;float:left;font-weight: bold;">: {{info["imdbRating"]}}</div>
+                    <br><br><br>
+                    <b>Director: </b>{{info["Director"]}}
+                    <br>
+                    <b>Writers: </b>{{info["Writer"]}}
+                    <br>
+                    <b>Cast: </b>{{info["Actors"]}}
+                    <br>
+                    <b>{{info["Awards"]}}</b>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -37,9 +37,10 @@ def profile_method():
 			testmovie=[]
 			recommendations=api.getTasteDiveData(names)
 			i=0
-			while i < 5:
+			while i < 4:
 				testmovie=(recommendations[i]["Name"])
 				recommendedmovie[testmovie]=api.getOMDBdata(testmovie,False)
+				recommendedmovie[testmovie]["index"]=i
 				i+=1
 			print(recommendedmovie)
 		return render_template("profile.html",user="me", movielist=ml,recmovies=recommendedmovie,)
@@ -93,6 +94,13 @@ def create_account():
 	else:
 		flash("Password do not match")
 	return redirect(url_for("input_field_page"))
+
+@app.route("/movie",methods=["POST","GET"])
+def movie_info():
+	name=request.form["title"]
+	data=api.getOMDBdata_all(name,False)
+	print(data['Title'])
+	return render_template("info.html",title=name,info=data)
 
 @app.route("/logout",methods=["POST","GET"])
 def user_logout():

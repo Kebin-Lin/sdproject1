@@ -50,14 +50,7 @@ def getOMDBpage(searchQuery,isID):
 	if isID:
 		url = "https://omdbapi.com/?i=" + searchQuery + "&apikey=" + OMDbApiKey +"&type=movie"
 	else:
-		search=getOMDbURL(searchQuery,1)
-		req=urlrequest.Request(search,headers={'User-Agent': 'Mozilla/5.0'})
-		urlobj=urlrequest.urlopen(req)
-		searchdata=json.load(urlobj)
-		print(searchQuery)
-		print(searchdata)
-		name=searchdata["Search"][0]["Title"]
-		searchTerms = name.split()
+		searchTerms = searchQuery.split()
 		searchUrl = '+'.join(searchTerms)
 		searchUrl = searchUrl.replace("&","and")
 		url = "https://omdbapi.com/?t=" + searchUrl + "&apikey=" + OMDbApiKey
@@ -77,6 +70,12 @@ def getOMDBdata(searchQuery,isID):
 	for keys in moviedata:
 		moviedata[keys]=data[keys]
 	return moviedata
+def getOMDBdata_all(searchQuery,isID):
+	movieurl=getOMDBpage(searchQuery,isID)
+	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
+	urlobj=urlrequest.urlopen(req)
+	data=json.load(urlobj)
+	return data
 		
 
 
