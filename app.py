@@ -92,9 +92,12 @@ def sign_up_page ():
 
 @app.route("/auth", methods=["POST"])
 def auth_account():
-	if db.auth(request.form["username"], request.form["password"]):
-		#debugPrint("Successful Login")
+	message = db.auth(request.form["username"], request.form["password"])
+	if message == "Login Successful":
 		session["username"] = request.form["username"]
+	else:
+		flash(message)
+	return redirect(url_for("input_field_page"))
 
 @app.route("/movie",methods=["POST","GET"])
 def movie_info():
