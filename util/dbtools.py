@@ -147,9 +147,9 @@ def getReviews(movieID):
     output = []
     db,c = getDBCursor()
     #Looks for reviews
-    for i in c.execute("SELECT review, username FROM reviews WHERE movieID = ?",(movieID,)):
-        #Appends the review information to a list as a tuple (review, username,)
-        output.append((i[0],i[1],))
+    for i in c.execute("SELECT review, username, rating FROM reviews WHERE movieID = ?",(movieID,)):
+        #Appends the review information to a list as a tuple (review, username, rating)
+        output.append((i[0],i[1],i[2],))
     closeDB(db)
     #Returns the list of reviews (empty list if movie doesn't exist or have any reviews)
     return output
@@ -167,6 +167,7 @@ def getRating(movieID):
     for i in c.execute("SELECT rating FROM reviews WHERE movieID = ?",(movieID,)):
         subt += i[0]
         count += 1
+    closeDB(db)
     if count == 0: return "N/A"
     return "%.1f" % (subt / count) #Truncates rating to one decimal
 
