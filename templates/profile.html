@@ -150,26 +150,34 @@ $('.carouseloo').carousel(cycle)
 
 
 
-<h1>Favorite Movies</h1><!--
-{% for movies in movielist %}
+<h1>Favorite Movies</h1>
 <div class="container">
+<div class="row">
+{% for movies in movielist %}
+<div class="col-4">
 <div class="card">
-    <img class="card-img-top" src="{{movielist[movies][1]}}" alt="Card image cap" style="width:20%;">
+	
+    <img class="card-img-top" src="{{movielist[movies][1]}}" alt="Card image cap" style="width:auto;">
     <div class="card-body">
-      <h2 class="card-title">{{movielist[movies][0]}}</h2>
+<form action="/movie" method="POST">
+                <button type="submit" class="btn btn-link" style="font-size:30px;align:center" name="title" value="{{movielist[movies][0]}}">{{movielist[movies][0]}}</button>
+            </form>
     </div>
   </div>
 </div>
-{% endfor %}-->
 
-
+{% endfor %}</div>
+</div>
+<!--
+<div class="row" style="border:3px solid #bdd4f9;">
     {% for movies in movielist %}
     
-    <div class="row" style="border:3px solid #bdd4f9;">
-	<div style="padding: 10px 10px 3px 3px;">
-		<div class="col-">
-		    <img src="{{movielist[movies][1]}}">
-		</div>
+    
+	
+		<div class="col-4">
+
+		    <img style="width:auto" src="{{movielist[movies][1]}}">
+		
 		<div class="col-">
 		    <form action="/movie" method="POST">
                 <button type="submit" class="btn btn-link" style="font-size:50px" name="title" value="{{movielist[movies][0]}}">{{movielist[movies][0]}}</button>
@@ -177,12 +185,13 @@ $('.carouseloo').carousel(cycle)
 		    <h3>{{movielist[movies][4]}}</h3>
 		 </div>
 	</div>
-     </div>
+    </div>
      <br>
     {% endfor %}
-   
+    </div>
     <br>
   </div> 
+-->
 {% endblock %}
 
 
