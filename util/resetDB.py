@@ -21,7 +21,7 @@ c.execute("CREATE TABLE IF NOT EXISTS moviesAdded(username TEXT, movieID TEXT)")
 c.execute("CREATE TABLE IF NOT EXISTS friends(username TEXT, friendName TEXT)")
 
 #Creates table to store movie pic/title
-c.execute("CREATE TABLE IF NOT EXISTS movieInfo(movieID TEXT, title TEXT, img TEXT)")
+c.execute("CREATE TABLE IF NOT EXISTS movieInfo(movieID TEXT, title TEXT, img TEXT, plot TEXT)")
 
 db.commit()
 db.close()

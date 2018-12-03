@@ -19,10 +19,16 @@ You can also find out what your friends like if they use the site.
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+linK -- 2018-12-03 12:03 PM
+--------------------------------------------------------------
+Added plot column for movieInfo table and updated associated functions
+===============================================================
+
 liuT -- 2018-12-2 10:15 PM
 --------------------------------------------------------------
 Good news:
- 1.fix carousel after last recmovie update 
+ 1.fix carousel after last recmovie update
  2.added movie info to profile page
 Bad news:
  1.webpage still looks empty though

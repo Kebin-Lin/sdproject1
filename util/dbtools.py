@@ -154,15 +154,15 @@ def getReviews(movieID):
     #Returns the list of reviews (empty list if movie doesn't exist or have any reviews)
     return output
 
-def addMovieInfo(movieID, title, img):
+def addMovieInfo(movieID, title, img, plot):
 
-    '''This function adds a OMDB movie ID to a table with the title and image
-       associated to save API calls.
+    '''This function adds a OMDB movie ID to a table with the title, image, and
+       plot associated to save API calls.
     '''
 
     db,c = getDBCursor()
     #Adds ID
-    c.execute("INSERT INTO movieInfo (movieID, title, img) VALUES(?,?,?)",(movieID, title, img,))
+    c.execute("INSERT INTO movieInfo (movieID, title, img, plot) VALUES(?,?,?,?)",(movieID, title, img, plot,))
     closeDB(db)
 
 def getMovieInfo(movieID):
@@ -174,9 +174,9 @@ def getMovieInfo(movieID):
     db,c = getDBCursor()
     #Search for ID
     output = None
-    for i in c.execute("SELECT title, img FROM movieInfo WHERE movieID = ?",(movieID,)):
-        #Sets output to a tuple (title, img,)
-        output = (i[0],i[1],)
+    for i in c.execute("SELECT title, img, plot FROM movieInfo WHERE movieID = ?",(movieID,)):
+        #Sets output to a tuple (title, img, plot,)
+        output = (i[0],i[1],i[2],)
     closeDB(db)
     return output
 
