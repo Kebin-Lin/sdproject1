@@ -90,19 +90,11 @@ def sign_up_page ():
 		return render_template("homepage")
 	return render_template("signup.html")
 
-@app.route("/createaccount", methods=["POST"])
-def create_account():
-	if (request.form['password'] == request.form['passwordConfirmation']):
-		if fakeCheckIfUserInDB(request.form['username']):
-			flash("Username already taken")
-			return render_template('homepage.html')
-		else:
-			flash("Account created successfully")
-			db.registerUser(request.form['username'], request.form['password'])
-			return redirect(url_for("input_field_page"))
-	else:
-		flash("Password do not match")
-	return redirect(url_for("input_field_page"))
+@app.route("/auth", methods=["POST"])
+def auth_account():
+	if db.auth(request.form["username"], request.form["password"]):
+		#debugPrint("Successful Login")
+		session["username"] = request.form["username"]
 
 @app.route("/movie",methods=["POST","GET"])
 def movie_info():
