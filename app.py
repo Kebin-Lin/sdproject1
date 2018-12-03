@@ -61,13 +61,22 @@ def input_field_page():
 	# session.clear()
 	if "username" in session:
 		#debugPrint("logged in as " + session["username"])
-		return redirect(url_for("profile_method"))
+		movielist=db.getMovies(session["username"])
+		print(movielist)
+		if movielist == []:
+			return redirect(url_for("add_movies"))
+		else:
+			return redirect(url_for("profile_method"))
 	#print(api.getOMDbURL('Kung Fury', 1))
 	return render_template('homepage.html')
 
 @app.route("/addmovie",methods = ["GET","POST"])
 def add_movies():
 	if "username" in session:
+		movielist=db.getMovies(session["username"])
+		print(movielist)
+		if movielist == []:
+			flash("Please Add At Least One Movie To Get Recommendations")
 		query=""
 		results=[]
 		if request.args.get("movie") != None:
@@ -108,7 +117,7 @@ def movie_info():
 		if "comment" in request.form:
 			db.addComment(data["imdbID"],request.form["comment"],session["username"])
 		comments=db.getComments(data["imdbID"])
-		return render_template("info.html",title=name,info=data,comments=comments)
+		return render_template("info.html",title=name,info=data,comments=comments,user=session["username"])
 
 @app.route("/logout",methods=["POST","GET"])
 def user_logout():

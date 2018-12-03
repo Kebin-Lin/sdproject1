@@ -20,6 +20,13 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+jamilM -- 2018-12-3 1:04
+--------------------------------------------------------------
+-User needs to add at least one movie to register
+-Add button added to movie info pages
+-Random icons for comments depending on user
+===============================================================
+
 linK -- 2018-12-03 12:28 PM
 --------------------------------------------------------------
 Added getReviews(movieID), which returns a string for the rating of a movie
