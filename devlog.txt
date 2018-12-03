@@ -20,6 +20,12 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+linK -- 2018-12-03 12:28 PM
+--------------------------------------------------------------
+Added getReviews(movieID), which returns a string for the rating of a movie
+  - Returns "N/A" if no reviews have been written
+===============================================================
+
 linK -- 2018-12-03 12:03 PM
 --------------------------------------------------------------
 Added plot column for movieInfo table and updated associated functions
