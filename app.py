@@ -32,7 +32,7 @@ def profile_method():
 		for id in ids:
 			if db.getMovieInfo(id) == None:
 				data=api.getOMDBdata(id,True)
-				db.addMovieInfo(id,data["Title"],data["Poster"])
+				db.addMovieInfo(id,data["Title"],data["Poster"],data["Plot"])
 			ml[id]=db.getMovieInfo(id)
 			names.append(ml[id][0])
 		recommendedmovie={}
