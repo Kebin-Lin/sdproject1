@@ -30,9 +30,7 @@ def getOMDbURL (searchQuery, pageNum):
 	'''
 		Returns the url to certain page of search results on OMDB that match the searchQuery
 	'''
-	searchTerms = searchQuery.split()
-	searchUrl = '+'.join(searchTerms)
-	searchUrl = searchUrl.replace("&","and")
+	searchUrl = urlrequest.quote(searchQuery) 
 	url = 'https://omdbapi.com/?s=' + searchUrl + '&page=' + str(pageNum) + '&apikey=' + OMDbApiKey +"&type=movie"
 	return url
 
@@ -50,9 +48,7 @@ def getOMDBpage(searchQuery,isID):
 	if isID:
 		url = "https://omdbapi.com/?i=" + searchQuery + "&apikey=" + OMDbApiKey +"&type=movie"
 	else:
-		searchTerms = searchQuery.split()
-		searchUrl = '+'.join(searchTerms)
-		searchUrl = searchUrl.replace("&","and")
+		searchUrl=urlrequest.quote(searchQuery)
 		url = "https://omdbapi.com/?t=" + searchUrl + "&apikey=" + OMDbApiKey
 	return url
 
@@ -65,8 +61,6 @@ def getOMDBdata(searchQuery,isID):
 	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)
 	data=json.load(urlobj)
-
-
 	for keys in moviedata:
 		moviedata[keys]=data[keys]
 	return moviedata

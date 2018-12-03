@@ -12,8 +12,10 @@
     {% for results in searchresults %}
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" src={{results["Poster"]}} alt="Card image cap">
-        <div class="card-body">
-            <button type="button" class="btn btn-link">{{results["Title"]}}</button>
+        <div class="card-body" style="oveflow:auto">
+            <form action="/movie" method="POST">
+                <button type="submit" class="btn btn-link" name="title" value="{{results["Title"]}}">{{results["Title"]}}</button>
+            </form>
             <br>
             <form action="/profile" method="POST">
                 <button class="btn btn-primary" type="submit" name="add" value={{results["imdbID"]}}>

@@ -31,9 +31,34 @@
                     <b>Cast: </b>{{info["Actors"]}}
                     <br>
                     <b>{{info["Awards"]}}</b>
-
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container">
+        <div class="jumbotron">
+                <h1>Comments</h1>
+                <br>
+                {% for comment in comments %}
+                <div class="media" style="background-color: white">
+                        <img class="mr-3" src="https://image.flaticon.com/icons/svg/183/183341.svg" alt="Generic placeholder image" height=80px>
+                        <div class="media-body" style="overflow-wrap: break-word;overflow: auto">
+                          <h5 class="mt-0"><b>{{comment[1]}}</b></h5>
+                          <p>{{comment[0]}}</p>
+                        </div>
+                </div>
+                <br>
+                {% endfor %}
+                <form action="/movie" method="POST">
+                    <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" rows="5" name="comment"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit" name="title" value="{{title}}">
+                        Submit
+                    </button> 
+                </form>
+        </div>
+
     </div>
 {% endblock %}

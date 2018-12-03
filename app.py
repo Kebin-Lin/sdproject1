@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, session, url_for, redirect, flash
+
 import os
 import random
+import urllib.request as urlrequest
+
+from flask import Flask, render_template, request, session, url_for, redirect, flash
 from util import dbtools as db
 from util import apihelp as api
 
@@ -58,11 +61,12 @@ def input_field_page():
 
 @app.route("/addmovie",methods = ["GET","POST"])
 def add_movies():
-	query=""
-	results=[]
-	if request.args.get("movie") != None:
-		query=request.args.get("movie")
-		results=api.getOMDBsearch(query)
+	if "username" in session:
+		query=""
+		results=[]
+		if request.args.get("movie") != None:
+			query=request.args.get("movie")
+			results=api.getOMDBsearch(query)
 	return render_template("addmovie.html",searchresults=results)
 
 @app.route("/auth", methods=["POST"])
@@ -97,10 +101,14 @@ def create_account():
 
 @app.route("/movie",methods=["POST","GET"])
 def movie_info():
-	name=request.form["title"]
-	data=api.getOMDBdata_all(name,False)
-	print(data['Title'])
-	return render_template("info.html",title=name,info=data)
+	if "username" in session:
+		name=request.form["title"]
+		print(name)
+		data=api.getOMDBdata_all(name,False)
+		if "comment" in request.form:
+			db.addComment(data["imdbID"],request.form["comment"],session["username"])
+		comments=db.getComments(data["imdbID"])
+		return render_template("info.html",title=name,info=data,comments=comments)
 
 @app.route("/logout",methods=["POST","GET"])
 def user_logout():
