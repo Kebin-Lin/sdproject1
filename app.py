@@ -13,14 +13,14 @@ app.secret_key = os.urandom(32)
 hardcodedUser = {"username": "test", "password": "test"}
 
 
-def debugPrint(toPrint):
-	print("--------------------------")
-	print(toPrint)
-	print("--------------------------")
+#def debugPrint(toPrint):
+	#print("--------------------------")
+	#print(toPrint)
+	#print("--------------------------")
 
 @app.route("/profile",methods = ["POST", "GET"])
 def profile_method():
-	print("This is running")
+	#print("This is running")
 	#test movielist
 	if "username" in session:
 		if "add" in request.form:
@@ -36,17 +36,23 @@ def profile_method():
 			ml[id]=db.getMovieInfo(id)
 			names.append(ml[id][0])
 		recommendedmovie={}
+		first_rec_dict={}
 		if names != []:
 			testmovie=[]
 			recommendations=api.getTasteDiveData(names)
 			i=0
-			while i < 4:
+			testmovie=(recommendations[i]["Name"])
+			#first_rec=recommendations[i]["Name"]
+			first_rec_dict=api.getOMDBdata(testmovie,False)
+			i+=1
+			while i < 5:
 				testmovie=(recommendations[i]["Name"])
 				recommendedmovie[testmovie]=api.getOMDBdata(testmovie,False)
 				recommendedmovie[testmovie]["index"]=i
 				i+=1
+			#print(f_rec)
 			print(recommendedmovie)
-		return render_template("profile.html",user="me", movielist=ml,recmovies=recommendedmovie,)
+		return render_template("profile.html",user=session["username"], movielist=ml,recmovies=recommendedmovie,f_rec=first_rec_dict)
 	else:
 		return redirect(url_for("input_field_page"))
 
@@ -54,7 +60,7 @@ def profile_method():
 def input_field_page():
 	# session.clear()
 	if "username" in session:
-		debugPrint("logged in as " + session["username"])
+		#debugPrint("logged in as " + session["username"])
 		return redirect(url_for("profile_method"))
 	#print(api.getOMDbURL('Kung Fury', 1))
 	return render_template('homepage.html')
@@ -72,10 +78,10 @@ def add_movies():
 @app.route("/auth", methods=["POST"])
 def auth_account():
 	if db.auth(request.form["username"], request.form["password"]):
-		debugPrint("Successful Login")
+		#debugPrint("Successful Login")
 		session["username"] = request.form["username"]
 	else:
-		debugPrint("Failed Login")
+		#debugPrint("Failed Login")
 		flash("Invalid Login Credentials")
 	return redirect(url_for("input_field_page"))
 
@@ -103,7 +109,7 @@ def create_account():
 def movie_info():
 	if "username" in session:
 		name=request.form["title"]
-		print(name)
+		#print(name)
 		data=api.getOMDBdata_all(name,False)
 		if "comment" in request.form:
 			db.addComment(data["imdbID"],request.form["comment"],session["username"])
