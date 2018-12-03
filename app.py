@@ -75,14 +75,13 @@ def add_movies():
 			results=api.getOMDBsearch(query)
 	return render_template("addmovie.html",searchresults=results)
 
-@app.route("/auth", methods=["POST"])
-def auth_account():
-	if db.auth(request.form["username"], request.form["password"]):
-		#debugPrint("Successful Login")
-		session["username"] = request.form["username"]
+@app.route("/createaccount", methods=["POST"])
+def create_account():
+	if (request.form['password'] == request.form['passwordConfirmation']):
+		flash(db.registerUser(request.form['username'], request.form['password']))
+		return redirect(url_for("input_field_page"))
 	else:
-		#debugPrint("Failed Login")
-		flash("Invalid Login Credentials")
+		flash("Password do not match")
 	return redirect(url_for("input_field_page"))
 
 @app.route("/signup", methods=["POST", "GET"])
