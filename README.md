@@ -50,5 +50,5 @@ obtained [here](http://www.omdbapi.com/apikey.aspx).
 TasteDive: Takes movie(s) as the input and recommends new movies. An API key can
 be obtained by creating an account and requesting a key [here](https://tastedive.com/account/api_access).
 
-If you want to use your keys to run the application, go to util/apihelp.py and
+If you want to use your keys to run the application, go to data/keys.json and
 replace the string values for TasteDiveApiKey and OMDbApiKey with your own keys.

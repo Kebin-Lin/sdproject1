@@ -2,8 +2,13 @@ import urllib.request as urlrequest
 import urllib.parse as parse
 import json
 
-TasteDiveApiKey = '324021-MyNextMo-WHLW4A5Z'
-OMDbApiKey = '555fca05'
+#Sets API keys
+with open("data/keys.json") as keyFile:
+	keys = json.loads(keyFile.read())
+
+TasteDiveApiKey = keys['TasteDiveApiKey']
+OMDbApiKey = keys['OMDbApiKey']
+
 def getTasteDiveURL (movies):
 	'''
 		This function uses the APIKey shown above to return a url to data on the similar movies found by TasteDive
@@ -30,7 +35,7 @@ def getOMDbURL (searchQuery, pageNum):
 	'''
 		Returns the url to certain page of search results on OMDB that match the searchQuery
 	'''
-	searchUrl = urlrequest.quote(searchQuery) 
+	searchUrl = urlrequest.quote(searchQuery)
 	url = 'https://omdbapi.com/?s=' + searchUrl + '&page=' + str(pageNum) + '&apikey=' + OMDbApiKey +"&type=movie"
 	return url
 
@@ -70,7 +75,3 @@ def getOMDBdata_all(searchQuery,isID):
 	urlobj=urlrequest.urlopen(req)
 	data=json.load(urlobj)
 	return data
-		
-
-
-	
