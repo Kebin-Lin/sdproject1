@@ -4,10 +4,10 @@ import json
 
 #Sets API keys
 with open("data/keys.json") as keyFile:
-	keys = json.loads(keyFile.read())
+	APIKeys = json.loads(keyFile.read())
 
-TasteDiveApiKey = keys['TasteDiveApiKey']
-OMDbApiKey = keys['OMDbApiKey']
+TasteDiveApiKey = APIKeys['TasteDiveApiKey']
+OMDbApiKey = APIKeys['OMDbApiKey']
 
 def getTasteDiveURL (movies):
 	'''
