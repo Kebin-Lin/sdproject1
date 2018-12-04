@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-	{% block title %}{{user}}{% endblock %}
+	{% block title %}{{user}}'s profile{% endblock %}
 
 	{% block externalcss %}<link rel="stylesheet" href="cssfile.css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -48,22 +48,20 @@ $('.carouseloo').carousel(cycle)
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul></div>
-    <form class="form-inline my-2 my-lg-0" action="/addmovie">
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">Add Movie</button>
-    </form>
-    <div  style="margin-right: auto;">
-    <form class="form-inline my-2 my-lg-0" style="margin-right: auto;">
-      <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+    
+    <div  style="margin-right:75px;">
+    <form class="form-inline my-2 my-lg-0" action="/addmovie" style="margin-right: auto;">
+      <input class="form-control mr-sm-2" name="movie" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:teal">Search</button>
     </form>
 	  </div>
 	  </div>
-	<div>
+	<div style="margin-right:75px">
 	<ul class="navbar-nav mr-auto">
 		<li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			$username</a>
-<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		<a class="nav-link dropdown-toggle" style="margin-right:75px"href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			{{user}}</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdown" >
 		<a class="dropdown-item" href="#">goo</a>
 
           <a class="dropdown-item" href="/logout" method="POST">logout</a>
