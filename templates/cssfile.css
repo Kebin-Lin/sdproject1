@@ -7,14 +7,14 @@ body, html {
   background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2015/12/12/858715/38ab8700ce1051a9b2311504d06f8289-700.jpg");
 
   /* Full height */
-  height: 100%;
+  height: auto;
 
   /* Center and scale the image nicely */
-  background-position: center;
+ /* background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover;*/
 }
 .container {
-	background:#FFF;
+	background:#432;
 
 }

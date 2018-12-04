@@ -99,7 +99,7 @@ $('.carouseloo').carousel(cycle)
         	<div class="col" style="overflow-wrap: break-word; margin-right:200px; margin-top:50px">
 				
 				<form action="/movie" method="POST">
-                <button type="submit" class="btn btn-link" style="font-size:50px" name="title" value="{{f_rec['Title']}}">{{f_rec['Title']}}</button>
+                <button type="submit" class="btn btn-link" style="font-size:30px;padding:0px;text-decoration: none;" name="title" value="{{f_rec['Title']}}">{{f_rec['Title']}}</button>
             </form>
 				<h3>{{f_rec['Plot']}}</h3>
 				
@@ -120,7 +120,7 @@ $('.carouseloo').carousel(cycle)
         	
         	<div class="col" style="overflow-wrap: break-word; margin-top:50px;margin-right:100px" >
 						<form action="/movie" method="POST">
-                <button type="submit" class="btn btn-link" style="font-size:50px" name="title" value="{{recmovies[movies]['Title']}}">{{recmovies[movies]['Title']}}</button>
+                <button type="submit" class="btn btn-link" style="font-size:30px;padding:0px;text-decoration: none;" name="title" value="{{recmovies[movies]['Title']}}">{{recmovies[movies]['Title']}}</button>
             </form>
 						<h3>{{recmovies[movies]['Plot']}}</h3>
 				
