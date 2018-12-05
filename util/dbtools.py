@@ -189,11 +189,27 @@ def getMovieInfo(movieID):
     '''
 
     db,c = getDBCursor()
-    #Search for ID
     output = None
+    #Search for ID
     for i in c.execute("SELECT title, img, plot FROM movieInfo WHERE movieID = ?",(movieID,)):
         #Sets output to a tuple (title, img, plot,)
         output = (i[0],i[1],i[2],)
+    closeDB(db)
+    return output
+
+def getMovieID(title):
+
+    '''This function attempts to get the ID associated with the title of a movie
+       and only returns one ID if multiple movies have the same name. If the
+       title does not exist in the database, then the function will return None.
+    '''
+
+    db,c = getDBCursor()
+    output = None
+    #Search for title
+    for i in c.execute("SELECT movieID FROM movieInfo WHERE title = ? LIMIT 1",(title,)):
+        #Sets output to a movieID
+        output = i[0]
     closeDB(db)
     return output
 
