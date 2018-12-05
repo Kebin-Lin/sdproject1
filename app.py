@@ -83,7 +83,7 @@ def add_movies():
 			try:
 				results=api.getOMDBsearch(query)
 			except:
-				flash("To get results please input at least one word")
+				flash("Please enter a valid search")
 	return render_template("addmovie.html",searchresults=results)
 
 @app.route("/createaccount", methods=["POST"])
