@@ -51,7 +51,6 @@ def profile_method():
 				recommendedmovie[testmovie]["index"]=i
 				i+=1
 			#print(f_rec)
-			print(recommendedmovie)
 		return render_template("profile.html",user=session["username"], movielist=ml,recmovies=recommendedmovie,f_rec=first_rec_dict)
 	else:
 		return redirect(url_for("input_field_page"))
@@ -81,7 +80,10 @@ def add_movies():
 		results=[]
 		if request.args.get("movie") != None:
 			query=request.args.get("movie")
-			results=api.getOMDBsearch(query)
+			try:
+				results=api.getOMDBsearch(query)
+			except:
+				flash("To get results please input at least one word")
 	return render_template("addmovie.html",searchresults=results)
 
 @app.route("/createaccount", methods=["POST"])

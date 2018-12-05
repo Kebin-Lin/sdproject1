@@ -15,8 +15,7 @@ def getTasteDiveURL (movies):
 	'''
 	url = "https://tastedive.com/api/similar?q="
 	for movieTitle in movies:
-		searchTerms = movieTitle.split(' ')
-		searchUrl = '+'.join(searchTerms)
+		searchUrl = urlrequest.quote(movieTitle)
 		url += 'movie:' + searchUrl + ','
 	url = url[:-1]
 	url += '&k=' + TasteDiveApiKey +"&type=movies"
