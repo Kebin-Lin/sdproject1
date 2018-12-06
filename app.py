@@ -23,7 +23,9 @@ def profile_method():
 	#print("This is running")
 	#test movielist
 	if "username" in session:
-
+		if "add" in request.form:
+			query=request.form["add"]
+			db.addMovie(session["username"],query)
 		ids=db.getMovies(session["username"])
 		names=[]
 		ml={}
@@ -39,12 +41,21 @@ def profile_method():
 			testmovie=[]
 			recommendations=api.getTasteDiveData(names)
 			i=0
+			most=5
 			testmovie=(recommendations[i]["Name"])
+			while db.getMovieID(testmovie) != None:
+				testmovie=(recommendations[i]["Name"])
+				i+=1
+				most+=1
 			#first_rec=recommendations[i]["Name"]
 			first_rec_dict=api.getOMDBdata(testmovie,False)
 			i+=1
-			while i < 5:
+			while i < most:
 				testmovie=(recommendations[i]["Name"])
+				while db.getMovieID(testmovie) != None:
+					testmovie=(recommendations[i]["Name"])
+					i+=1
+					most+=1
 				recommendedmovie[testmovie]=api.getOMDBdata(testmovie,False)
 				recommendedmovie[testmovie]["index"]=i
 				i+=1
@@ -70,22 +81,22 @@ def input_field_page():
 @app.route("/addmovie",methods = ["GET","POST"])
 def add_movies():
 	if "username" in session:
-		if "add" in request.form:
-			query=request.form["add"]
-			db.addMovie(session["username"],query)
+		query=""
 		movielist=db.getMovies(session["username"])
-		print(movielist)
 		if movielist == []:
 			flash("Please Add At Least One Movie To Get Recommendations")
-		query=""
 		results=[]
-		if request.args.get("movie") != None:
+		print(query)
+		if "movie" in request.args:
 			query=request.args.get("movie")
-			try:
-				results=api.getOMDBsearch(query)
-			except:
-				flash("Please enter a valid search")
-	return render_template("addmovie.html",searchresults=results)
+		print(query)
+		try:
+			results=api.getOMDBsearch(query)
+		except:
+			flash("Please enter a valid search")
+		return render_template("addmovie.html",searchresults=results)
+	else:
+		return redirect(url_for("input_field_page"))
 
 @app.route("/createaccount", methods=["POST"])
 def create_account():
