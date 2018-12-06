@@ -8,7 +8,10 @@
 {% block navbar %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-	<a class="navbar-brand" href="#">Navbar</a>
+	<a href="/" style="color: inherit;">
+		<h5 style="color:black">MyNextMovie
+		<img src="{{ url_for('static',filename='logo.png') }}" width="34" style="margin-bottom: 2px"></h5>
+	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -54,7 +57,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/2000px-Metacritic.svg.png" width="30" style="float:left">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" width="80" style="padding-left:20px;float:left">
                     <div class="rating" style="font-size:20px;float:left;font-weight: bold;">: {{info["imdbRating"]}}</div>
-                    <div class="ourrating" style="font-size:20px;float:left;font-weight: bold;padding-left:20px;"> MyNextMovie: {{ourrating}} </div>
+                    <div class="ourrating" style="font-size:20px;float:left;font-weight: bold;padding-left:20px;"> <img src="{{ url_for('static',filename='logo.png') }}" width="34" style="margin-bottom: 2px">: {{ourrating}} </div>
                     <br><br><br>
                     <b>Director: </b>{{info["Director"]}}
                     <br>
