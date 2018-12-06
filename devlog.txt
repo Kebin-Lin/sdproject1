@@ -29,6 +29,12 @@ jamilM -- 2018-12-05 10:01 PM
 -Rating from our site added to Movie info page
 ===============================================================
 
+linK -- 2018-12-04 12:23 PM
+--------------------------------------------------------------
+Added getMovieID(title), which returns ONE movie ID for a given title
+ - Returns None if the title does not exist in the DB
+===============================================================
+
 jamilM -- 2018-12-04 12:33 PM
 --------------------------------------------------------------
 Try-except block added for searching for movies
