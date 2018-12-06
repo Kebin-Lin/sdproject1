@@ -114,7 +114,12 @@ def auth_account():
 @app.route("/movie",methods=["POST","GET"])
 def movie_info():
 	if "username" in session:
-		name=request.form["title"]
+		if "add" in request.form:
+			query=request.form["add"]
+			db.addMovie(session["username"],query)
+			name=query
+		else:
+			name=request.form["title"]
 		#print(name)
 		print(name)
 		data=api.getOMDBdata_all(name,True)
