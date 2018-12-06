@@ -13,7 +13,7 @@ $('.carouseloo').carousel(cycle)
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<script>$('body').scrollspy({ target: '.navbar' })</script>
 
 
 
@@ -21,7 +21,7 @@ $('.carouseloo').carousel(cycle)
 
 {% block navbar %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
 	<a class="navbar-brand" href="#">Navbar</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@ $('.carouseloo').carousel(cycle)
 		<a class="nav-link dropdown-toggle" style="margin-right:45px; font-size:20px"href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			{{user}}</a>
 <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
-		<a class="dropdown-item" href="#">goo</a>
+		<a class="dropdown-item" href="#">setting</a>
 
           <a class="dropdown-item" href="/logout" method="POST">logout</a>
 
@@ -58,11 +58,14 @@ $('.carouseloo').carousel(cycle)
 	</div>
 
 </nav>
-
+<br>
+<br>
 {% endblock %}
 
 
-{% block intro %}<div class="container">
+{% block intro %}
+
+<div class="container">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol  class="carousel-indicators" stlye="border: 2px solid black">
@@ -137,7 +140,7 @@ $('.carouseloo').carousel(cycle)
 
 <div class="container" style="background-image:url(https://ak8.picdn.net/shutterstock/videos/3456578/thumb/1.jpg;background-size:cover;)">
 
-
+<div data-spy="scroll" data-target=".navbar" data-offset="0">
 
 <h1>Favorite Movies</h1>
 <div class="container">
@@ -149,13 +152,14 @@ $('.carouseloo').carousel(cycle)
     <img class="card-img-top" src="{{movielist[movies][1]}}" alt="Card image cap" style="width:auto;">
     <div class="card-body">
 <form action="/movie" method="POST">
-                <button type="submit" class="btn btn-link" style="font-size:30px;align:center" name="title" value="{{movies}}">{{movielist[movies][0]}}</button>
+                <button type="submit" class="btn btn-link" style="white-space:normal;font-size:30px;align:center" name="title" value="{{movies}}">{{movielist[movies][0]}}</button>
             </form>
     </div>
   </div>
 </div>
 
 {% endfor %}</div>
+</div>
 </div>
 <!--
 <div class="row" style="border:3px solid #bdd4f9;">

@@ -20,6 +20,15 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+liuT -- 2018-12-2 10:15 PM
+--------------------------------------------------------------
+Good news:
+ 1.solved word-wrap issues
+ 2.navbar will always show on top
+Bad news:
+ 1.unable to add movie(not my fault though)
+==============================================================
+
 jamilM -- 2018-12-05 10:01 PM
 --------------------------------------------------------------
 -Movie info pages are accessed by imdb id instead of name
