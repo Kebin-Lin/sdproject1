@@ -23,9 +23,7 @@ def profile_method():
 	#print("This is running")
 	#test movielist
 	if "username" in session:
-		if "add" in request.form:
-			query=request.form["add"]
-			db.addMovie(session["username"],query)
+
 		ids=db.getMovies(session["username"])
 		names=[]
 		ml={}
@@ -72,6 +70,9 @@ def input_field_page():
 @app.route("/addmovie",methods = ["GET","POST"])
 def add_movies():
 	if "username" in session:
+		if "add" in request.form:
+			query=request.form["add"]
+			db.addMovie(session["username"],query)
 		movielist=db.getMovies(session["username"])
 		print(movielist)
 		if movielist == []:
@@ -115,11 +116,21 @@ def movie_info():
 	if "username" in session:
 		name=request.form["title"]
 		#print(name)
-		data=api.getOMDBdata_all(name,False)
+		print(name)
+		data=api.getOMDBdata_all(name,True)
+		add=True
+		if data["imdbID"] in db.getMovies(session["username"]):
+			add=False
 		if "comment" in request.form:
 			db.addComment(data["imdbID"],request.form["comment"],session["username"])
 		comments=db.getComments(data["imdbID"])
-		return render_template("info.html",title=name,info=data,comments=comments,user=session["username"])
+		if "review" in request.form:
+			db.addReview(data["imdbID"],request.form["review"],session["username"],request.form["rating"])
+		reviews=db.getReviews(data["imdbID"])
+		rating=db.getRating(data["imdbID"])
+		return render_template("info.html",title=name,info=data,comments=comments,user=session["username"],indb=add,reviews=reviews,ourrating=rating)
+	else:
+		return redirect(url_for("input_field_page"))
 
 @app.route("/logout",methods=["POST","GET"])
 def user_logout():

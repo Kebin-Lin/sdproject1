@@ -53,14 +53,14 @@ def getOMDBpage(searchQuery,isID):
 		url = "https://omdbapi.com/?i=" + searchQuery + "&apikey=" + OMDbApiKey +"&type=movie"
 	else:
 		searchUrl=urlrequest.quote(searchQuery)
-		url = "https://omdbapi.com/?t=" + searchUrl + "&apikey=" + OMDbApiKey
+		url = "https://omdbapi.com/?t=" + searchUrl + "&apikey=" + OMDbApiKey + "&type=movie"
 	return url
 
 def getOMDBdata(searchQuery,isID):
 	'''
 		Returns the title,plot and poster of a movie from the url returned by getOMDBpage
 	'''
-	moviedata={"Title":"","Plot":"","Poster":"","imdbRating":"","Metascore":""}
+	moviedata={"Title":"","Plot":"","Poster":"","imdbRating":"","Metascore":"","imdbID":""}
 	movieurl=getOMDBpage(searchQuery,isID)
 	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)

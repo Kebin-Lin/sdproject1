@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 	{% block head %}
-	{% block title %}{{title}}{% endblock %}
+	{% block title %}{{info['Title']}}{% endblock %}
 	<!--<link rel="stylesheet" href="cssfile.css">-->
     {% endblock %}
 {% block content %}
@@ -23,6 +23,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/2000px-Metacritic.svg.png" width="30" style="float:left">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" width="80" style="padding-left:20px;float:left">
                     <div class="rating" style="font-size:20px;float:left;font-weight: bold;">: {{info["imdbRating"]}}</div>
+                    <div class="ourrating" style="font-size:20px;float:left;font-weight: bold;padding-left:20px;"> MyNextMovie: {{ourrating}} </div>
                     <br><br><br>
                     <b>Director: </b>{{info["Director"]}}
                     <br>
@@ -31,13 +32,59 @@
                     <b>Cast: </b>{{info["Actors"]}}
                     <br>
                     <b>{{info["Awards"]}}</b>
+                    {% if indb %}
                     <form action="/profile" method="POST">
                         <button class="btn btn-primary" type="submit" name="add" value={{info["imdbID"]}}>
                             Add
                         </button>
                     </form>
+                    {% endif %}
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Reviews</h1>
+            <br>
+            {% for review in reviews %}
+            <div class="media" style="background-color: white">
+                <img class="mr-3" src="https://api.adorable.io/avatars/285/{{review[1]}}.png" alt="Generic placeholder image" height=80px>
+                <div class="media-body" style="overflow-wrap: break-word;overflow: auto">
+                  <h5 class="mt-0"><b>{{review[1]}}</b></h5>
+                  <b>Rating: {{review[2]}}</b>
+                  <br>
+                  <pre style="font-family: Arial">{{review[0]}}</pre>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+            <form action="/movie" method="POST">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="Rating">Rate Movie</label>
+                        <select class="form-control" id="Rating" name="rating">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="review">Review:</label>
+                        <textarea class="form-control" rows="5" name="review" placeholder="Example Review:"></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit" name="title" value="{{info["imdbID"]}}">
+                    Submit
+                </button> 
+            </form>
         </div>
     </div>
     <div class="container">
@@ -57,9 +104,9 @@
                 <form action="/movie" method="POST">
                     <div class="form-group">
                             <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" name="comment"></textarea>
+                            <textarea class="form-control" rows="5" name="comment" placeholder="A perfect 5/7 movie"></textarea>
                     </div>
-                    <button class="btn btn-primary" type="submit" name="title" value="{{title}}">
+                    <button class="btn btn-primary" type="submit" name="title" value="{{info["imdbID"]}}">
                         Submit
                     </button> 
                 </form>

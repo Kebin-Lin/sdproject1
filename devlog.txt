@@ -20,6 +20,15 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+jamilM -- 2018-12-05 10:01 PM
+--------------------------------------------------------------
+-Movie info pages are accessed by imdb id instead of name
+-The user is not redirected to homepage after adding movie anymore
+-The add button on movie info page is conditional now
+-Review section added to Movie info page
+-Rating from our site added to Movie info page
+===============================================================
+
 jamilM -- 2018-12-04 12:33 PM
 --------------------------------------------------------------
 Try-except block added for searching for movies

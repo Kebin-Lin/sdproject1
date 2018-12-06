@@ -22,10 +22,10 @@
         <img class="card-img-top" src={{results["Poster"]}} alt="Card image cap">
         <div class="card-body" style="oveflow:auto">
             <form action="/movie" method="POST">
-                <button type="submit" class="btn btn-link" name="title" value="{{results["Title"]}}">{{results["Title"]}}</button>
+                <button type="submit" class="btn btn-link" name="title" value="{{results["imdbID"]}}">{{results["Title"]}}</button>
             </form>
             <br>
-            <form action="/profile" method="POST">
+            <form action="/addmovie" method="POST">
 				
                 <button class="btn btn-primary" type="submit" name="add" value={{results["imdbID"]}}>
                     Add
