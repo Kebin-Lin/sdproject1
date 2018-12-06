@@ -60,7 +60,7 @@
 					<img class="card-img-top" src={{results["Poster"]}} alt="Card image cap">
 					<div class="card-body" style="oveflow:word-break">
 						<form action="/movie" method="POST">
-						    <button type="submit" class="btn btn-link" name="title" value="{{results["Title"]}}">{{results["Title"]}}</button>
+						    <button type="submit" class="btn btn-link" name="title" value="{{results["imdbID"]}}">{{results["Title"]}}</button>
 						</form>
 						<br>
 						<form action="/profile" method="POST">
