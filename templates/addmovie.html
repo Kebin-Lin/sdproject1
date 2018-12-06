@@ -49,34 +49,6 @@
     <h2>{{each}}</h2>
 </div>
 {%endfor%}
-<<<<<<< HEAD
-    <h1>Add a movie</h1>
-    <form action="/addmovie">
-        Search: <input type="text" name="movie">
-        <input type="submit" value="Search">
-    </form>
-    {% for results in searchresults %}
-    <div class="card" style="width: 20rem;">
-        <img class="card-img-top" src={{results["Poster"]}} alt="Card image cap">
-        <div class="card-body" style="oveflow:auto">
-            <form action="/movie" method="POST">
-                <button type="submit" class="btn btn-link" name="title" value="{{results["imdbID"]}}">{{results["Title"]}}</button>
-            </form>
-            <br>
-            <form action="/addmovie" method="POST">
-				
-                <button class="btn btn-primary" type="submit" name="add" value={{results["imdbID"]}}>
-                    Add
-                </button>
-				
-            </form>
-            
-        </div>
-    </div>
-    <br>
-    {% endfor %}
-    
-=======
 <div class="container" style="backgound-color:blue">
 			<h1>Add a movie</h1>
 
@@ -106,5 +78,4 @@
 				{% endfor %}
 		</div>
  </div>
->>>>>>> 495a4b023cc978cd8ed3639d9a74136bbbb252bc
 {% endblock %}
