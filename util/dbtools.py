@@ -135,6 +135,11 @@ def addReview(movieID, review, username, rating):
     '''
 
     db,c = getDBCursor()
+    #Checks if review by user already exists
+    for i in c.execute("SELECT username FROM reviews WHERE username = ? AND movieID = ?",(username, movieID,)):
+        #If exists, do nothing
+        closeDB(db)
+        return
     #Adds review
     c.execute("INSERT INTO reviews (username, review, movieID, rating) VALUES(?,?,?,?)",(username, review, movieID, rating,))
     closeDB(db)
