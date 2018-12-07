@@ -1,56 +1,19 @@
 {% extends "base.html" %}
-	{% block head %}
 	{% block title %}Add Movie{% endblock %}
 	<!--<link rel="stylesheet" href="cssfile.css">-->
-	{% endblock %}
-	{% block externalcss %}
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	{% endblock %}
 
-
-
-
-{% block navbar %}
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-	<a class="navbar-brand" href="#">Navbar</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="/profile">Home <span class="sr-only">(current)</span></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href={{ url_for('static',filename='about.html') }}> About</a>
-			</li>
-			
-		</ul></div><div  style="margin-right: auto;">
-			<form class="form-inline my-2 my-lg-0" action="/addmovie" style="margin-right: auto;">
-				<input class="form-control mr-sm-2" name="movie" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:teal">Search</button>
-			</form>
-		</div>
-	</div>
-</nav>
-
-{% endblock %}
 
 
 
 {% block content %}
-{%set msgs = get_flashed_messages()%}
-
-
-{%for each in msgs %}
-<div class="alert alert-info" role="alert">
-    <h2>{{each}}</h2>
-</div>
-{%endfor%}
 <div class="container" style="backgound-color:blue">
-			<h1>Add a movie</h1>
+	<h1>Add a movie</h1>
+	{%set msgs = get_flashed_messages()%}
+	{%for each in msgs %}
+	<div class="alert alert-info" role="alert">
+		{{each}}
+	</div>
+	{%endfor%}
 
 		<div class="row">
 				{% for results in searchresults %}
@@ -67,9 +30,9 @@
 						    <button class="btn btn-primary" type="submit" name="add" value={{results["imdbID"]}}>
 						        Add
 						    </button>
-							
+
 						</form>
-						
+
 					</div>
 				</div>
 				<br>
