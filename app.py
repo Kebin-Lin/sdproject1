@@ -53,6 +53,7 @@ def profile_method():
 
 		#3.
 		ids=db.getMovies(currUserProfile)
+		print(ids)
 		names=[]
 		ml={}
 		for id in ids:
@@ -152,7 +153,8 @@ def friends_page():
 		if "remove" in request.form:
 			db.removeFriend(session["username"],request.form["remove"])
 		friendlist=db.getFriends(session["username"])
-		userlist=[x for x in userlist if (x not in friendlist or x != session["username"])] # creates a list of users who aren't friends
+		userlist=[x for x in userlist if (x not in friendlist)] # creates a list of users who aren't friends
+		userlist.remove(session["username"])
 		return render_template("friendlist.html",friendlist=friendlist,userlist=userlist)
 	else:
 		return redirect(url_for("input_field_page"))
@@ -190,13 +192,21 @@ def movie_info():
 		They can add the movie from the page as well
 	'''
 	if "username" in session:
+		if "title" in request.form:
+			name=request.form["title"]
 		if "add" in request.form:
 			query=request.form["add"]
 			db.addMovie(session["username"],query)
 			name=query
-		else:
-			name=request.form["title"]
-		print(name + "----------------------")
+		if "review_remove" in request.form:
+			query=request.form["review_remove"]
+			db.removeReview(query,session["username"])
+			name=query
+		if "comment_remove" in request.form:
+			query=request.form["comment_remove"].split("&")[0]
+			comment=request.form["comment_remove"].split("&")[1]
+			db.removeComment(query,comment,session["username"])
+			name=query
 		if db.getMovieInfo(name) == None:
 			data=api.getOMDBdata(name,True)
 			print(data)

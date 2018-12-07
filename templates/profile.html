@@ -39,6 +39,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/friends">Friends</a>
 				</li>
+				<li class="nav-item">
+						<a class="nav-link" href="/logout">Log Out</a>
+				</li>
 			</ul>
 		</div>
 		<div  style="margin-right: auto;">
@@ -47,18 +50,6 @@
 				<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
 			</form>
 		</div>
-		<div style="margin-right:45px">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" style="margin-right:45px; font-size:20px"href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						{{user}}
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown" >
-							<a class="dropdown-item" href="/logout" method="POST">logout</a>
-					</div>
-				</li>
-			</ul>
-		</div>
 	</nav>
 	<br>
 	<br>
@@ -66,6 +57,13 @@
 {% block intro %}
 
 		<div class="container">
+				{%set msgs = get_flashed_messages()%}
+				{%for each in msgs %}
+				<br>
+				<div class="alert alert-info" role="alert">
+					{{each}}
+				</div>
+				{%endfor%}
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol  class="carousel-indicators" stlye="border: 2px solid black">

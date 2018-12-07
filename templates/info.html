@@ -60,6 +60,13 @@
                   <b>Rating: {{review[2]}}</b>
                   <br>
                   <pre style="font-family: Arial">{{review[0]}}</pre>
+                  {% if user == review[1] %}
+                  <form action="/movie" method="POST">
+                    <button class="btn btn-primary" type="submit" name="review_remove" value="{{info["imdbID"]}}">
+                            Remove
+                    </button>
+                  </form>
+                  {% endif %}
                 </div>
             </div>
             <br>
@@ -84,7 +91,7 @@
                 </div>
                 <div class="form-group">
                         <label for="review">Review:</label>
-                        <textarea class="form-control" rows="5" name="review" placeholder="Example Review:"></textarea>
+                        <textarea class="form-control" rows="5" name="review" placeholder="Talk about what you liked and disliked about the movie"></textarea>
                 </div>
                 <button class="btn btn-primary" type="submit" name="title" value="{{info["imdbID"]}}">
                     Submit
@@ -103,6 +110,13 @@
                         <div class="media-body" style="overflow-wrap: break-word;overflow: auto">
                           <h5 class="mt-0"><b>{{comment[1]}}</b></h5>
                           <p>{{comment[0]}}</p>
+                          {% if user == comment[1] %}
+                          <form action="/movie" method="POST">
+                            <button class="btn btn-primary" type="submit" name="comment_remove" value="{{info["imdbID"]}}&{{comment[0]}}">
+                                    Remove
+                            </button>
+                          </form>
+                          {% endif %}
                         </div>
                 </div>
                 <br>
@@ -110,7 +124,7 @@
                 <form action="/movie" method="POST">
                     <div class="form-group">
                             <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" name="comment" placeholder="A perfect 5/7 movie"></textarea>
+                            <textarea class="form-control" rows="5" name="comment"></textarea>
                     </div>
                     <button class="btn btn-primary" type="submit" name="title" value="{{info["imdbID"]}}">
                         Submit

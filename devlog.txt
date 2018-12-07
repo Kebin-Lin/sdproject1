@@ -20,6 +20,14 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+jamilM -- 2018-12-07 1:27 AM
+--------------------------------------------------------------
+API calls for OMDb reduced
+Added the friendlist route and corresponding template
+Added buttons for removing movies,friends,comments,reviews
+Fixed some template stuff
+==============================================================
+
 linK -- 2018-12-06 11:31 PM
 --------------------------------------------------------------
 Changed Navbar in info
