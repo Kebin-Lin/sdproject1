@@ -23,13 +23,16 @@ def profile_method():
 	#print("This is running")
 	#test movielist
 	if "username" in session:
+		currUserProfile = session["username"]
+		if "user" in request.args:
+			currUserProfile = request.args.get("user")
 		if "add" in request.form:
 			query=request.form["add"]
 			db.addMovie(session["username"],query)
-		movielist=db.getMovies(session["username"])
+		movielist=db.getMovies(currUserProfile)
 		if movielist == []:
 			return redirect(url_for("add_movies"))
-		ids=db.getMovies(session["username"])
+		ids=db.getMovies(currUserProfile)
 		names=[]
 		ml={}
 		for id in ids:
