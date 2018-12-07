@@ -20,18 +20,31 @@ hardcodedUser = {"username": "test", "password": "test"}
 
 @app.route("/profile",methods = ["POST", "GET"])
 def profile_method():
+	'''
+		The profile route does multiple tasks:
+		1. When a movie is added the id of the movie is sent to this route to be added to the database
+		2. If the user has no movies he/she will be redirect to add_movies to add at least one movie
+		3. If the user has at least one movie the movielist is compiled from the database and displayed
+		4. That movie list is used to get 5 recommendations
+		5. These recommendations are also stored into the database
+	'''
 	#print("This is running")
 	#test movielist
 	if "username" in session:
 		currUserProfile = session["username"]
 		if "user" in request.args:
 			currUserProfile = request.args.get("user")
+		# 1.
 		if "add" in request.form:
 			query=request.form["add"]
 			db.addMovie(session["username"],query)
 		movielist=db.getMovies(currUserProfile)
+
+		# 2.
 		if movielist == []:
 			return redirect(url_for("add_movies"))
+
+		#3.
 		ids=db.getMovies(currUserProfile)
 		names=[]
 		ml={}
@@ -41,28 +54,28 @@ def profile_method():
 				db.addMovieInfo(id,data["Title"],data["Poster"],data["Plot"])
 			ml[id]=db.getMovieInfo(id)
 			names.append(ml[id][0])
+		#4.
+
 		recommendedmovie={}
 		first_rec_dict={}
 		if names != []:
 			testmovie=[]
 			recommendations=api.getTasteDiveData(names)
 			i=0
-			most=5
 			testmovie=(recommendations[i]["Name"])
-			while db.getMovieID(testmovie) != None:
-				testmovie=(recommendations[i]["Name"])
-				i+=1
-				most+=1
 			#first_rec=recommendations[i]["Name"]
 			first_rec_dict=api.getOMDBdata(testmovie,False)
 			i+=1
 			while i < 5:
 				testmovie=(recommendations[i]["Name"])
 				mid=db.getMovieID(testmovie)
+
+				# 5.
 				if db.getMovieInfo(mid) == None:
 					dat=api.getOMDBdata(testmovie,False)
 					db.addMovieInfo(dat["imdbID"],dat["Title"],dat["Poster"],dat["Plot"])
 					testmovie=dat["Title"]
+
 				currID = db.getMovieID(testmovie)
 				recommendedmovie[testmovie]=db.getMovieInfo(currID)
 				recommendedmovie[testmovie].append(currID)
@@ -76,11 +89,14 @@ def profile_method():
 
 @app.route("/", methods = ["POST", "GET"])
 def input_field_page():
+	'''
+		The main route which redirects to the login page if not logged in.
+		If the user has no movies it will redirect to addmovies otherwise it will send the user to the profile page
+	'''
 	# session.clear()
 	if "username" in session:
 		#debugPrint("logged in as " + session["username"])
 		movielist=db.getMovies(session["username"])
-		print(movielist)
 		if movielist == []:
 			return redirect(url_for("add_movies"))
 		else:
@@ -90,6 +106,9 @@ def input_field_page():
 
 @app.route("/addmovie",methods = ["GET","POST"])
 def add_movies():
+	'''
+		This page returns search results for movies user search using the search bar
+	'''
 	if "username" in session:
 		query=""
 		movielist=db.getMovies(session["username"])
@@ -110,12 +129,17 @@ def add_movies():
 		return redirect(url_for("input_field_page"))
 @app.route("/friends",methods = ["GET","POST"])
 def friends_page():
+	'''
+		This route allows the user to add friends who have similar tastes
+		The user can also view their lists.
+		The user can also see a list of other users
+	'''
 	if "username" in session:
 		userlist=db.getAllUsers()
 		if "add" in request.form:
 			db.addFriend(session["username"],request.form["add"])
 		friendlist=db.getFriends(session["username"])
-		userlist=[x for x in userlist if (x not in friendlist)]
+		userlist=[x for x in userlist if (x not in friendlist)] # creates a list of users who aren't friends
 		return render_template("friendlist.html",friendlist=friendlist,userlist=userlist)
 	else:
 		return redirect(url_for("input_field_page"))
@@ -123,6 +147,9 @@ def friends_page():
 
 @app.route("/createaccount", methods=["POST"])
 def create_account():
+	'''
+		This route is used for registration
+	'''
 	if (request.form['password'] == request.form['passwordConfirmation']):
 		flash(db.registerUser(request.form['username'], request.form['password']))
 		return redirect(url_for("input_field_page"))
@@ -130,14 +157,11 @@ def create_account():
 		flash("Password do not match")
 	return redirect(url_for("input_field_page"))
 
-@app.route("/signup", methods=["POST", "GET"])
-def sign_up_page ():
-	if "username" in session:
-		return render_template("homepage")
-	return render_template("signup.html")
-
 @app.route("/auth", methods=["POST"])
 def auth_account():
+	'''
+		Verifies the username and password with the database
+	'''
 	message = db.auth(request.form["username"], request.form["password"])
 	if message == "Login Successful":
 		session["username"] = request.form["username"]
@@ -147,6 +171,11 @@ def auth_account():
 
 @app.route("/movie",methods=["POST","GET"])
 def movie_info():
+	'''
+		Users can see info about a movie on this page
+		They can also comment and review these movies on this page
+		They can add the movie from the page as well
+	'''
 	if "username" in session:
 		if "add" in request.form:
 			query=request.form["add"]
@@ -176,12 +205,18 @@ def movie_info():
 
 @app.route("/logout",methods=["POST","GET"])
 def user_logout():
+	'''
+		Pops the user out of session
+	'''
 	if "username" in session:
 		session.pop("username")
 	return redirect(url_for("input_field_page"))
 
 @app.route("/discover")
 def discoverPage():
+	'''
+		Displays movies sorted by the ratings on our site
+	'''
 	ratings = db.getSortedRatings()
 	toDisplay = []
 	#Grabs titles of sorted movieIDs
@@ -194,6 +229,9 @@ def discoverPage():
 
 @app.route("/about")
 def aboutPage():
+	'''
+		Gives information about our website
+	'''
 	return render_template("about.html")
 
 if __name__ == "__main__":
