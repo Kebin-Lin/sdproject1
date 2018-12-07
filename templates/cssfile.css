@@ -2,18 +2,12 @@ body, html {
   height: 100%;
   background:#666;
 }
-.bg{
-  /* The image used */
+
+.bg {
   background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2015/12/12/858715/38ab8700ce1051a9b2311504d06f8289-700.jpg");
-
-  /* Full height */
   height: auto;
-
-  /* Center and scale the image nicely */
- /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;*/
 }
+
 .container {
 	background:#432;
 
