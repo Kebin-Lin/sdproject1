@@ -1,33 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}My Next Movie{% endblock %}
+{% block title %}About{% endblock %}
 
 {% block externalcss%}
 <link rel="stylesheet" href="cssfile.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script>
-	$(function() {
-
-		$('#login-form-link').click(function(e) {
-			$("#login-form").delay(100).fadeIn(100);
-			$("#register-form").fadeOut(100);
-			$('#register-form-link').removeClass('active');
-			$(this).addClass('active');
-			e.preventDefault();
-		});
-		$('#register-form-link').click(function(e) {
-			$("#register-form").delay(100).fadeIn(100);
-			$("#login-form").fadeOut(100);
-			$('#login-form-link').removeClass('active');
-			$(this).addClass('active');
-			e.preventDefault();
-		});
-
-	});
-</script>
-
 {% endblock %}
 {% block navbar %}
 
@@ -46,7 +23,7 @@
 
 {% block intro %}
 <br><br><br>
-<div style="background-image: url(https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg)">
+<div style="background-image: url(https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg);height:100%;background-position:center;background-repeat:no-repeat;background-size:cover;">
 	<br>
 	<div class="container" >
 
@@ -62,14 +39,17 @@
 		<div class="jumbotron">
 			<div class="row">
 
+
 				<div class="center-block">
-					<h1 class="display-4" style="color:black">MyNextMovie
-						<img src="{{ url_for('static',filename='logo.png') }}" width="55" style="margin-bottom:10px"></h1>
+					<center>
+						<h1 class="display-4" style="color:black">
+							MyNextMovie
+							<img src="{{ url_for('static',filename='logo.png') }}" width="55" style="margin-bottom:10px">
+						</h1>
 						<p class="lead">We want to help you figure out what movie to watch next!</p>
 						<hr class="my-4">
 						<p></p>
-				</div>
-				<div class="center-block">
+					</center>
 						<div class="card text-center">
 						  <div class="card-header">
 						    <h3>How to use this website</h3>
@@ -102,3 +82,5 @@
 </div>
 
 	{% endblock %}
+
+{% block footer %}{% endblock %}

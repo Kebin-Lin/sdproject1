@@ -45,7 +45,9 @@
     {% block content %}
     {% endblock %}
   </body>
-  <footer style="text-align:center">
-      &copy Hackstreet Boys 2018
-  </footer>
+  {% block footer %}
+    <footer style="text-align:center">
+        &copy Hackstreet Boys 2018
+    </footer>
+  {% endblock %}
 </html>

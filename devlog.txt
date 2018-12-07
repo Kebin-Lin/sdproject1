@@ -20,7 +20,7 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-linK -- 2018-12-06 10:08 PM
+linK -- 2018-12-06 10:54 PM
 --------------------------------------------------------------
 Changed Navbar in info
 Reformatted base template
@@ -31,6 +31,7 @@ HTML Cleanup
 Added way to visit other profiles
 Added fallback image for movies without posters
 Added getAllUsers() which returns a set of all usernames
+Updated about page
 ==============================================================
 
 linK -- 2018-12-06 12:10 PM
