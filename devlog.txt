@@ -32,6 +32,7 @@ Added way to visit other profiles
 Added fallback image for movies without posters
 Added getAllUsers() which returns a set of all usernames
 Updated about page
+Fixed syntax error in Jinja
 ==============================================================
 
 linK -- 2018-12-06 12:10 PM
