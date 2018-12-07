@@ -25,8 +25,17 @@ jamilM -- 2018-12-07 1:27 AM
 API calls for OMDb reduced
 Added the friendlist route and corresponding template
 Added buttons for removing movies,friends,comments,reviews
-Fixed some template stuff
+Fixed navbar rendering in templates
 ==============================================================
+
+liuT -- 2018-12-2 10:15 PM
+--------------------------------------------------------------
+Good news:
+ 1.made an error page in response to api server crash
+Bad news:
+ 1.one api server crashed
+==============================================================
+
 
 linK -- 2018-12-06 11:31 PM
 --------------------------------------------------------------
