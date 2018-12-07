@@ -36,14 +36,6 @@ Bad news:
  1.one api server crashed
 ==============================================================
 
-nahianS -- 2018-12-06 10:10 PM
---------------------------------------------------------------
-Implemented the about page containing directions on how to use the website
-Made a favicon for the app
-Restructed the HTML/CSS
-Went "bug" hunting
-==============================================================
-
 linK -- 2018-12-06 11:31 PM
 --------------------------------------------------------------
 Changed Navbar in info
@@ -63,6 +55,14 @@ Added remove functions (no return value):
  - removeComment(movieID, comment, username)
  - removeMovie(username, movieID)
  - removeReview(movieID, username)
+==============================================================
+
+nahianS -- 2018-12-06 10:10 PM
+--------------------------------------------------------------
+Implemented the about page containing directions on how to use the website
+Made a favicon for the app
+Restructed the HTML/CSS
+Went "bug" hunting
 ==============================================================
 
 linK -- 2018-12-06 12:10 PM
