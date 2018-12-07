@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+	{% block head %}
+	{% block title %}Friend List{% endblock %}+
+	<!--<link rel="stylesheet" href="cssfile.css">-->
+	{% endblock %}
+	{% block externalcss %}
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    {% endblock %}
+{% block content %}
+{% block navbar %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+		<a href="/" style="color: inherit;">
+			<img src="{{ url_for('static',filename='logo.png') }}" width="34" style="margin-bottom: 2px">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/profile">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('static',filename='about.html') }}"> About</a>
+				</li>
+				<li class = "nav-item">
+					<a class="nav-link" href="/discover">Discover</a>
+				</li>
+			</ul>
+		</div>
+		<div  style="margin-right: auto;">
+			<form class="form-inline my-2 my-lg-0" action="/addmovie" style="margin-right: auto;">
+				<input class="form-control mr-sm-2" name="movie" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+		<div style="margin-right:45px">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" style="margin-right:45px; font-size:20px"href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{user}}
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+							<a class="dropdown-item" href="#">setting</a>
+							<a class="dropdown-item" href="/logout" method="POST">logout</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<br>
+{% endblock %}
+    {%set msgs = get_flashed_messages()%}
+
+
+        {%for each in msgs %}
+        <div class="alert alert-info" role="alert">
+            <h2>{{each}}</h2>
+        </div>
+        {%endfor%}
+        <div class="container">
+        <h1>Your Friends</h1>
+        <div class="row">
+                {% for friend in friendlist %}
+                <div class="col-1">
+                <img class="mr-3" src="https://api.adorable.io/avatars/285/{{friend}}.png" alt="Generic placeholder image" height=80px>
+                </div>
+                <div class="col-11">
+                    <div class="list-group">
+                        <a href="/profile?user={{friend}}" class="list-group-item">
+                            <h4>{{friend}}</h4>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                <br>
+        </div>
+        
+        <h1>Looking for Friends here's a list of users</h1>
+        <div class="row">
+            {% for user in userlist %}
+            <div class="col-1">
+                <img class="mr-3" src="https://api.adorable.io/avatars/285/{{user}}.png" alt="Generic placeholder image" height=80px>
+            </div>
+            <div class="col-11">
+                <div class="list-group">
+                    <a href="/profile?user={{user}}" class="list-group-item">
+                        <h4>{{user}}</h4>
+                        <form action="/friends" method="POST">
+                            <button class="btn btn-primary" type="submit" name="add" value="{{user}}" style="float:right">
+                                Add
+                            </button>
+                        </form>
+                    </a>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+

@@ -108,6 +108,18 @@ def add_movies():
 		return render_template("addmovie.html",searchresults=results)
 	else:
 		return redirect(url_for("input_field_page"))
+@app.route("/friends",methods = ["GET","POST"])
+def friends_page():
+	if "username" in session:
+		userlist=db.getAllUsers()
+		if "add" in request.form:
+			db.addFriend(session["username"],request.form["add"])
+		friendlist=db.getFriends(session["username"])
+		userlist=[x for x in userlist if (x not in friendlist)]
+		return render_template("friendlist.html",friendlist=friendlist,userlist=userlist)
+	else:
+		return redirect(url_for("input_field_page"))
+		
 
 @app.route("/createaccount", methods=["POST"])
 def create_account():
