@@ -54,7 +54,6 @@
 						{{user}}
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown" >
-							<a class="dropdown-item" href="#">setting</a>
 							<a class="dropdown-item" href="/logout" method="POST">logout</a>
 					</div>
 				</li>
@@ -159,6 +158,11 @@
 								<div class="card-body">
 									<form action="/movie" method="POST">
 										<button type="submit" class="btn btn-link" style="white-space:normal;font-size:30px;align:center" name="title" value="{{movies}}">{{movielist[movies][0]}}</button>
+									</form>
+									<form action="/profile" method="POST">
+							    		<button class="btn btn-primary" type="submit" name="remove" value="{{movies}}">
+							        		Remove
+										</button>
 									</form>
 								</div>
 							</div>

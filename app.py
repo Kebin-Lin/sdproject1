@@ -34,10 +34,17 @@ def profile_method():
 		currUserProfile = session["username"]
 		if "user" in request.args:
 			currUserProfile = request.args.get("user")
+			movielist=db.getMovies(currUserProfile)
+			if movielist == []:
+				flash("This user does not have any movies")
+				return redirect(url_for("friends_page"))
 		# 1.
 		if "add" in request.form:
 			query=request.form["add"]
 			db.addMovie(session["username"],query)
+		if "remove" in request.form:
+			query=request.form["remove"]
+			db.removeMovie(session["username"],query)
 		movielist=db.getMovies(currUserProfile)
 
 		# 2.
@@ -83,7 +90,7 @@ def profile_method():
 				i+=1
 			print(recommendedmovie)
 			#print(f_rec)
-		return render_template("profile.html",user=session["username"], movielist=ml,recmovies=recommendedmovie,f_rec=first_rec_dict)
+		return render_template("profile.html",user=currUserProfile, movielist=ml,recmovies=recommendedmovie,f_rec=first_rec_dict)
 	else:
 		return redirect(url_for("input_field_page"))
 
@@ -138,8 +145,10 @@ def friends_page():
 		userlist=db.getAllUsers()
 		if "add" in request.form:
 			db.addFriend(session["username"],request.form["add"])
+		if "remove" in request.form:
+			db.removeFriend(session["username"],request.form["remove"])
 		friendlist=db.getFriends(session["username"])
-		userlist=[x for x in userlist if (x not in friendlist)] # creates a list of users who aren't friends
+		userlist=[x for x in userlist if (x not in friendlist or x != session["username"])] # creates a list of users who aren't friends
 		return render_template("friendlist.html",friendlist=friendlist,userlist=userlist)
 	else:
 		return redirect(url_for("input_field_page"))
