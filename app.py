@@ -26,6 +26,9 @@ def profile_method():
 		if "add" in request.form:
 			query=request.form["add"]
 			db.addMovie(session["username"],query)
+		movielist=db.getMovies(session["username"])
+		if movielist == []:
+			return redirect(url_for("add_movies"))
 		ids=db.getMovies(session["username"])
 		names=[]
 		ml={}
@@ -50,15 +53,18 @@ def profile_method():
 			#first_rec=recommendations[i]["Name"]
 			first_rec_dict=api.getOMDBdata(testmovie,False)
 			i+=1
-			while i < most:
+			while i < 5:
 				testmovie=(recommendations[i]["Name"])
-				while db.getMovieID(testmovie) != None:
-					testmovie=(recommendations[i]["Name"])
-					i+=1
-					most+=1
-				recommendedmovie[testmovie]=api.getOMDBdata(testmovie,False)
-				recommendedmovie[testmovie]["index"]=i
+				mid=db.getMovieID(testmovie)
+				if db.getMovieInfo(mid) == None:
+					dat=api.getOMDBdata(testmovie,False)
+					db.addMovieInfo(dat["imdbID"],dat["Title"],dat["Poster"],dat["Plot"])
+					testmovie=dat["Title"]
+				recommendedmovie[testmovie]=db.getMovieInfo(db.getMovieID(testmovie))
+				recommendedmovie[testmovie].append(db.getMovieID(testmovie))
+				print(recommendedmovie[testmovie])
 				i+=1
+			print(recommendedmovie)
 			#print(f_rec)
 		return render_template("profile.html",user=session["username"], movielist=ml,recmovies=recommendedmovie,f_rec=first_rec_dict)
 	else:
@@ -83,8 +89,9 @@ def add_movies():
 	if "username" in session:
 		query=""
 		movielist=db.getMovies(session["username"])
-		if movielist == []:
+		if movielist == [] and "movie" not in request.args :
 			flash("Please Add At Least One Movie To Get Recommendations")
+			return render_template("addmovie.html")
 		results=[]
 		print(query)
 		if "movie" in request.args:

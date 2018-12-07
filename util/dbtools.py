@@ -198,7 +198,7 @@ def getMovieInfo(movieID):
     #Search for ID
     for i in c.execute("SELECT title, img, plot FROM movieInfo WHERE movieID = ?",(movieID,)):
         #Sets output to a tuple (title, img, plot,)
-        output = (i[0],i[1],i[2],)
+        output = [i[0],i[1],i[2],]
     closeDB(db)
     return output
 
