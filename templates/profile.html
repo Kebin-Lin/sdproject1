@@ -87,10 +87,40 @@
 
 							<div class="col" style="overflow-wrap: break-word; margin-right:200px; margin-top:50px">
 
-								<form action="/movie" method="POST">
-									<button type="submit" class="btn btn-link" style="font-size:30px;padding:0px;text-decoration: none;" name="title" value="{{f_rec['imdbID']}}">{{f_rec['Title']}}</button>
-								</form>
-								<h3>{{f_rec['Plot']}}</h3>
+		{% block intro %}
+
+		<div class="container">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol  class="carousel-indicators" stlye="border: 2px solid black">
+					<li data-target="#myCarousel" data-slide-to="0" class="active" style="color:black;"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<li data-target="#myCarousel" data-slide-to="3"></li>
+					<li data-target="#myCarousel" data-slide-to="4"></li>
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+
+					<div class="item active">
+						<div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
+
+							<div class="row">
+
+								<div class="col">
+									<object data="{{f_rec['Poster']}}" type="image/png" style="width:auto;padding:50px">
+				            <!--Fallback image if original does not exist-->
+				            <img src="static/IMGDNE.png">
+				          </object>
+								</div>
+
+								<div class="col" style="overflow-wrap: break-word; margin-right:200px; margin-top:50px">
+
+									<form action="/movie" method="POST">
+										<button type="submit" class="btn btn-link" style="font-size:30px;padding:0px;text-decoration: none;" name="title" value="{{f_rec['imdbID']}}">{{f_rec['Title']}}</button>
+									</form>
+									<h3>{{f_rec['Plot']}}</h3>
 
 							</div>
 						</div>
@@ -102,10 +132,13 @@
 				<div class="item">
 					<div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
 
-						<div class="row">
-							<div class="col">
-								<img src="{{recmovies[movies][1]}}" alt="" style="width:auto;padding:50px">
-							</div>
+							<div class="row">
+								<div class="col">
+									<object data="{{recmovies[movies][1]}}" type="image/png" style="width:auto;padding:50px">
+				            <!--Fallback image if original does not exist-->
+				            <img src="static/IMGDNE.png">
+				          </object>
+								</div>
 
 							<div class="col" style="overflow-wrap: break-word; margin-top:50px;margin-right:100px" >
 								<form action="/movie" method="POST">
@@ -134,7 +167,7 @@
 	<br>
 {% endblock %}
 {% block content %}
-	<div class="container" style="background-image:url(https://ak8.picdn.net/shutterstock/videos/3456578/thumb/1.jpg;background-size:cover;)">	
+	<div class="container" style="background-image:url(https://ak8.picdn.net/shutterstock/videos/3456578/thumb/1.jpg;background-size:cover;)">
 		<div data-spy="scroll" data-target=".navbar" data-offset="0">
 			<h1>Favorite Movies</h1>
 			<div class="container">
@@ -142,8 +175,10 @@
 					{% for movies in movielist %}
 						<div class="col-4">
 							<div class="card">
-
-								<img class="card-img-top" src="{{movielist[movies][1]}}" alt="Card image cap" style="width:auto;">
+								<object data="{{movielist[movies][1]}}" type="image/png" style="width:auto;">
+									<!--Fallback image if original does not exist-->
+									<img class="card-img-top" src="static/IMGDNE.png">
+								</object>
 								<div class="card-body">
 									<form action="/movie" method="POST">
 										<button type="submit" class="btn btn-link" style="white-space:normal;font-size:30px;align:center" name="title" value="{{movies}}">{{movielist[movies][0]}}</button>

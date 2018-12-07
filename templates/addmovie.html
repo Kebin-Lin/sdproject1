@@ -13,7 +13,10 @@
 			{% for results in searchresults %}
 				<div class="col">
 					<div class="card" style="width: 20rem;">
-						<img class="card-img-top" src={{results["Poster"]}} alt="Card image cap">
+						<object data="{{results["Poster"]}}" type="image/png">
+							<!--Fallback image if original does not exist-->
+							<img class="card-img-top" src="static/IMGDNE.png" alt="Card image cap">
+						</object>
 						<div class="card-body" style="overflow:hidden">
 							<form action="/movie" method="POST">
 							    <button type="submit" class="btn btn-link" name="title" value="{{results["imdbID"]}}" style="white-space:normal;">{{results["Title"]}}</button>

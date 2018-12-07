@@ -9,7 +9,10 @@
         <div class="jumbotron" >
             <div class="row">
                 <div class="col-4">
-                    <img src="{{info['Poster']}}">
+									<object data="{{info['Poster']}}" type="image/png">
+				            <!--Fallback image if original does not exist-->
+				            <img src="static/IMGDNE.png">
+				          </object>
                 </div>
                 <div class="col-8">
                     <h1>{{info['Title']}}</h1>
