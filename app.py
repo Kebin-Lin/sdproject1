@@ -180,6 +180,10 @@ def discoverPage():
 		toDisplay.append(newTuple)
 	return render_template("discover.html",movieList = toDisplay)
 
+@app.route("/about")
+def aboutPage():
+	return render_template("about.html")
+
 if __name__ == "__main__":
 	app.debug = True
 	app.run()
