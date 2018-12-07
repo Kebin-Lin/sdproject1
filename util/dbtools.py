@@ -218,6 +218,27 @@ def getMovieID(title):
     closeDB(db)
     return output
 
+def getSortedRatings():
+
+    '''This function returns a list of tuples of ratings and movie IDs sorted in
+       order of descending MyNextMovie ratings. Returns an empty list if no
+       ratings exist.
+    '''
+
+    db,c = getDBCursor()
+    output = []
+    setMovies = set()
+    #Adds all movieIDs of movies that have been rated to a set
+    for i in c.execute("SELECT movieID FROM reviews"):
+        setMovies.add(i[0])
+    closeDB(db)
+    #Adds tuples of ratings and movieIDs to the output
+    for i in setMovies:
+        newTuple = (float(getRating(i)),i)
+        output.append(newTuple)
+    output.sort(reverse = True) #Sort output
+    return output
+
 def getDBCursor():
     db = sqlite3.connect("data/info.db")
     cursor = db.cursor()
