@@ -20,9 +20,12 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-linK -- 2018-12-06 7:46 PM
+linK -- 2018-12-06 9:11 PM
 --------------------------------------------------------------
-Changed navbar in info
+Changed Navbar in info
+Reformatted base template
+Added Discover page
+Added getSortedRatings()
 ==============================================================
 
 linK -- 2018-12-06 12:10 PM

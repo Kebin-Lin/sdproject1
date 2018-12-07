@@ -133,6 +133,9 @@ def movie_info():
 			name=request.form["title"]
 		#print(name)
 		print(name)
+		if db.getMovieInfo(name) == None:
+			data=api.getOMDBdata(name,True)
+			db.addMovieInfo(name,data["Title"],data["Poster"],data["Plot"])
 		data=api.getOMDBdata_all(name,True)
 		add=True
 		if data["imdbID"] in db.getMovies(session["username"]):
@@ -154,6 +157,17 @@ def user_logout():
 		session.pop("username")
 	return redirect(url_for("input_field_page"))
 
+@app.route("/discover")
+def discoverPage():
+	ratings = db.getSortedRatings()
+	toDisplay = []
+	#Grabs titles of sorted movieIDs
+	for i in ratings:
+		movieInfo = db.getMovieInfo(i[1])
+		print(movieInfo)
+		newTuple = (i[0],i[1],movieInfo[0],movieInfo[1])
+		toDisplay.append(newTuple)
+	return render_template("discover.html",movieList = toDisplay)
 
 if __name__ == "__main__":
 	app.debug = True
