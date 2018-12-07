@@ -20,7 +20,7 @@ You can also find out what your friends like if they use the site.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-linK -- 2018-12-06 10:54 PM
+linK -- 2018-12-06 11:31 PM
 --------------------------------------------------------------
 Changed Navbar in info
 Reformatted base template
@@ -33,6 +33,12 @@ Added fallback image for movies without posters
 Added getAllUsers() which returns a set of all usernames
 Updated about page
 Fixed syntax error in Jinja
+Added friends link
+Added remove functions (no return value):
+ - removeFriend(username,friendName)
+ - removeComment(movieID, comment, username)
+ - removeMovie(username, movieID)
+ - removeReview(movieID, username)
 ==============================================================
 
 linK -- 2018-12-06 12:10 PM
