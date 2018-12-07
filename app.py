@@ -60,8 +60,9 @@ def profile_method():
 					dat=api.getOMDBdata(testmovie,False)
 					db.addMovieInfo(dat["imdbID"],dat["Title"],dat["Poster"],dat["Plot"])
 					testmovie=dat["Title"]
-				recommendedmovie[testmovie]=db.getMovieInfo(db.getMovieID(testmovie))
-				recommendedmovie[testmovie].append(db.getMovieID(testmovie))
+				currID = db.getMovieID(testmovie)
+				recommendedmovie[testmovie]=db.getMovieInfo(currID)
+				recommendedmovie[testmovie].append(currID)
 				print(recommendedmovie[testmovie])
 				i+=1
 			print(recommendedmovie)
@@ -138,10 +139,10 @@ def movie_info():
 			name=query
 		else:
 			name=request.form["title"]
-		#print(name)
-		print(name)
+		print(name + "----------------------")
 		if db.getMovieInfo(name) == None:
 			data=api.getOMDBdata(name,True)
+			print(data)
 			db.addMovieInfo(name,data["Title"],data["Poster"],data["Plot"])
 		data=api.getOMDBdata_all(name,True)
 		add=True

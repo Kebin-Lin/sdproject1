@@ -38,7 +38,7 @@ $('.carouseloo').carousel(cycle)
 			<li class="nav-item">
 				<a class="nav-link" href={{ url_for('static',filename='about.html') }}> About</a>
 			</li>
-			
+
 		</ul></div><div  style="margin-right: auto;">
 			<form class="form-inline my-2 my-lg-0" action="/addmovie" style="margin-right: auto;">
 				<input class="form-control mr-sm-2" name="movie" type="search" placeholder="Search" aria-label="Search">
@@ -84,41 +84,41 @@ $('.carouseloo').carousel(cycle)
 
             <div class="item active">
       <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
-      
+
       	<div class="row">
-	
+
       		<div class="col">
         		<img src="{{f_rec['Poster']}}" alt="" style="width:auto;padding:50px">
         	</div>
-      	
+
         	<div class="col" style="overflow-wrap: break-word; margin-right:200px; margin-top:50px">
-				
+
 				<form action="/movie" method="POST">
                 <button type="submit" class="btn btn-link" style="font-size:30px;padding:0px;text-decoration: none;" name="title" value="{{f_rec['imdbID']}}">{{f_rec['Title']}}</button>
             </form>
 				<h3>{{f_rec['Plot']}}</h3>
-				
+
 					</div>
 			</div>
-				
+
 				</div>
       </div>
 
 	{% for movies in recmovies %}
             <div class="item">
       <div style="background-image:url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Ec7hwrKKxik52rser/4k-white-tile-movement-animation-background-seamless-loop_4vl4fmake__F0000.png);background-size: cover;">
-      
+
       	<div class="row">
       		<div class="col">
         		<img src="{{recmovies[movies][1]}}" alt="" style="width:auto;padding:50px">
         	</div>
-        	
+
         	<div class="col" style="overflow-wrap: break-word; margin-top:50px;margin-right:100px" >
 						<form action="/movie" method="POST">
-                <button type="submit" class="btn btn-link" style="font-size:30px;padding:0px;text-decoration: none;" name="title" value="{{recmovies[movies]['imdbID']}}">{{recmovies[movies][0]}}</button>
+                <button type="submit" class="btn btn-link" style="font-size:30px;padding:0px;text-decoration: none;" name="title" value="{{recmovies[movies][3]}}">{{recmovies[movies][0]}}</button>
             </form>
 						<h3>{{recmovies[movies][2]}}</h3>
-				
+
 					</div>
 				</div>
 				</div>
@@ -151,7 +151,7 @@ $('.carouseloo').carousel(cycle)
 {% for movies in movielist %}
 <div class="col-4">
 <div class="card">
-	
+
     <img class="card-img-top" src="{{movielist[movies][1]}}" alt="Card image cap" style="width:auto;">
     <div class="card-body">
 <form action="/movie" method="POST">
@@ -167,13 +167,13 @@ $('.carouseloo').carousel(cycle)
 <!--
 <div class="row" style="border:3px solid #bdd4f9;">
     {% for movies in movielist %}
-    
-    
-	
+
+
+
 		<div class="col-4">
 
 		    <img style="width:auto" src="{{movielist[movies][1]}}">
-		
+
 		<div class="col-">
 		    <form action="/movie" method="POST">
                 <button type="submit" class="btn btn-link" style="font-size:50px" name="title" value="{{movielist[movies][0]}}">{{movielist[movies][0]}}</button>
@@ -186,14 +186,6 @@ $('.carouseloo').carousel(cycle)
     {% endfor %}
     </div>
     <br>
-  </div> 
+  </div>
 -->
 {% endblock %}
-
-
-
-
-
-
-
-
