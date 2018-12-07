@@ -249,7 +249,7 @@ def getAllUsers():
     output = set()
     #Adds all usernames to the output set
     for i in c.execute("SELECT username FROM users"):
-        setMovies.add(i[0])
+        output.add(i[0])
     closeDB(db)
     return output
 
