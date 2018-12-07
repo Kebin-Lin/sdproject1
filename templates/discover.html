@@ -7,7 +7,10 @@
       {% for movie in movieList %}
       <div class="col">
         <div class="card" style="width: 20rem;">
-          <img class="card-img-top" src="{{movie[3]}}" alt="Card image cap"/>
+          <object data="{{movie[3]}}" type="image/png">
+            <!--Fallback image if original does not exist-->
+            <img class="card-img-top" src="static/IMGDNE.png" alt="Card image cap">
+          </object>
           <div class="card-body" style="overflow:hidden">
             <form action="/movie" method="POST" style = "text-align:center;">
               <button type="submit" class="btn btn-link" name="title" value="{{movie[1]}}" style="white-space:normal;">

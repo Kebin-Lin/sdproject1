@@ -29,6 +29,8 @@ Added getSortedRatings()
 Fixed broken suggestion links
 HTML Cleanup
 Added way to visit other profiles
+Added fallback image for movies without posters
+Added getAllUsers() which returns a set of all usernames
 ==============================================================
 
 linK -- 2018-12-06 12:10 PM

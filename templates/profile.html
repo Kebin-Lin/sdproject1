@@ -89,7 +89,10 @@
 							<div class="row">
 
 								<div class="col">
-									<img src="{{f_rec['Poster']}}" alt="" style="width:auto;padding:50px">
+									<object data="{{f_rec['Poster']}}" type="image/png" style="width:auto;padding:50px">
+				            <!--Fallback image if original does not exist-->
+				            <img src="static/IMGDNE.png">
+				          </object>
 								</div>
 
 								<div class="col" style="overflow-wrap: break-word; margin-right:200px; margin-top:50px">
@@ -111,7 +114,10 @@
 
 							<div class="row">
 								<div class="col">
-									<img src="{{recmovies[movies][1]}}" alt="" style="width:auto;padding:50px">
+									<object data="{{recmovies[movies][1]}}" type="image/png" style="width:auto;padding:50px">
+				            <!--Fallback image if original does not exist-->
+				            <img src="static/IMGDNE.png">
+				          </object>
 								</div>
 
 								<div class="col" style="overflow-wrap: break-word; margin-top:50px;margin-right:100px" >
@@ -152,8 +158,10 @@
 						{% for movies in movielist %}
 						<div class="col-4">
 							<div class="card">
-
-								<img class="card-img-top" src="{{movielist[movies][1]}}" alt="Card image cap" style="width:auto;">
+								<object data="{{movielist[movies][1]}}" type="image/png" style="width:auto;">
+									<!--Fallback image if original does not exist-->
+									<img class="card-img-top" src="static/IMGDNE.png">
+								</object>
 								<div class="card-body">
 									<form action="/movie" method="POST">
 										<button type="submit" class="btn btn-link" style="white-space:normal;font-size:30px;align:center" name="title" value="{{movies}}">{{movielist[movies][0]}}</button>

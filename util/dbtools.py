@@ -239,6 +239,20 @@ def getSortedRatings():
     output.sort(reverse = True) #Sort output
     return output
 
+def getAllUsers():
+
+    '''This function returns a set of all users registered. Returns an empty set
+       if no users exist.
+    '''
+
+    db,c = getDBCursor()
+    output = set()
+    #Adds all usernames to the output set
+    for i in c.execute("SELECT username FROM users"):
+        setMovies.add(i[0])
+    closeDB(db)
+    return output
+
 def getDBCursor():
     db = sqlite3.connect("data/info.db")
     cursor = db.cursor()
