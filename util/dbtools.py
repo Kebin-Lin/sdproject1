@@ -73,6 +73,15 @@ def getFriends(username):
     #Returns the list of friends (empty list if user doesn't exist or have any friends)
     return output
 
+def removeFriend(username,friendName):
+
+    '''This function removes a friend for a user from the friends table.
+    '''
+
+    db,c = getDBCursor()
+    c.execute("DELETE FROM friends WHERE username = ? AND friendName = ?",(username,friendName,))
+    closeDB(db)
+
 def addComment(movieID, comment, username):
 
     '''This function adds a comment for a movie into the comment table.
@@ -100,6 +109,15 @@ def getComments(movieID):
     #Returns the list of comments (empty list if movie doesn't exist or have any comments)
     return output
 
+def removeComment(movieID, comment, username):
+
+    '''This function removes a comment by a user from the comments table.
+    '''
+
+    db,c = getDBCursor()
+    c.execute("DELETE FROM comments WHERE movieID = ? AND comment = ? AND username = ?",(movieID, comment, username,))
+    closeDB(db)
+
 def addMovie(username, movieID):
 
     '''This function adds a liked movie for a user into the moviesAdded table.
@@ -126,6 +144,15 @@ def getMovies(username):
     closeDB(db)
     #Returns the list of movies (empty list of user doesn't exist or hasn't added any movies)
     return output
+
+def removeMovie(username, movieID):
+
+    '''This function removes a movie added by a user from the moviesAdded table.
+    '''
+
+    db,c = getDBCursor()
+    c.execute("DELETE FROM moviesAdded WHERE username = ? AND movieID = ?",(username, movieID,))
+    closeDB(db)
 
 def addReview(movieID, review, username, rating):
 
@@ -158,6 +185,16 @@ def getReviews(movieID):
     closeDB(db)
     #Returns the list of reviews (empty list if movie doesn't exist or have any reviews)
     return output
+
+def removeReview(movieID, username):
+
+    '''This function removes a review made by a user for a movie from the
+       reviews table.
+    '''
+
+    db,c = getDBCursor()
+    c.execute("DELETE FROM reviews WHERE movieID = ? AND username = ?",(movieID, username,))
+    closeDB(db)
 
 def getRating(movieID):
 
@@ -249,7 +286,7 @@ def getAllUsers():
     output = set()
     #Adds all usernames to the output set
     for i in c.execute("SELECT username FROM users"):
-        setMovies.add(i[0])
+        output.add(i[0])
     closeDB(db)
     return output
 
