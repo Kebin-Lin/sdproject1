@@ -48,6 +48,7 @@ def getOMDBsearch(searchQuery):
 def getOMDBpage(searchQuery,isID):
 	'''
 		Returns the OMDB url for the first searh result
+		If isID is true the search is done by IMDBid else it is done using the title
 	'''
 	if isID:
 		url = "https://omdbapi.com/?i=" + searchQuery + "&apikey=" + OMDbApiKey +"&type=movie"
@@ -60,7 +61,7 @@ def getOMDBdata(searchQuery,isID):
 	'''
 		Returns the title,plot and poster of a movie from the url returned by getOMDBpage
 	'''
-	moviedata={"Title":"","Plot":"","Poster":"","imdbRating":"","Metascore":"","imdbID":""}
+	moviedata={"Title":"","Plot":"","Poster":"","imdbRating":"","Metascore":"","imdbID":""} # the fields I want from the api
 	movieurl=getOMDBpage(searchQuery,isID)
 	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)
@@ -69,6 +70,9 @@ def getOMDBdata(searchQuery,isID):
 		moviedata[keys]=data[keys]
 	return moviedata
 def getOMDBdata_all(searchQuery,isID):
+	'''
+		Similar to getOMDBdata but gets more data to fill the movie info page
+	'''
 	movieurl=getOMDBpage(searchQuery,isID)
 	req=urlrequest.Request(movieurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)
