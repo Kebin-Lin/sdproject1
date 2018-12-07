@@ -50,7 +50,7 @@ def addFriend(username,friendName):
         closeDB(db)
         return "Friend does not exist"
     #Searches if the user already has the friend added
-    for i in c.execute("SELECT friendName FROM friends WHERE friendName = ?",(friendName,)):
+    for i in c.execute("SELECT friendName FROM friends WHERE friendName = ? & username = ?",(friendName,username)):
         closeDB(db)
         return "Friend already added"
     #Adds friend if not already added
