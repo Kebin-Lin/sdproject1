@@ -69,28 +69,32 @@ def profile_method():
 			testmovie=[]
 			recommendations=api.getTasteDiveData(names)
 			i=0
-			testmovie=(recommendations[i]["Name"])
-			#first_rec=recommendations[i]["Name"]
-			first_rec_dict=api.getOMDBdata(testmovie,False)
-			i+=1
-			while i < 5:
+			try:
 				testmovie=(recommendations[i]["Name"])
-				mid=db.getMovieID(testmovie)
-
-				# 5.
-				if db.getMovieInfo(mid) == None:
-					dat=api.getOMDBdata(testmovie,False)
-					db.addMovieInfo(dat["imdbID"],dat["Title"],dat["Poster"],dat["Plot"])
-					testmovie=dat["Title"]
-
-				currID = db.getMovieID(testmovie)
-				recommendedmovie[testmovie]=db.getMovieInfo(currID)
-				recommendedmovie[testmovie].append(currID)
-				print(recommendedmovie[testmovie])
+			#first_rec=recommendations[i]["Name"]
+				first_rec_dict=api.getOMDBdata(testmovie,False)
 				i+=1
-			print(recommendedmovie)
-			#print(f_rec)
-		return render_template("profile.html",user=currUserProfile, movielist=ml,recmovies=recommendedmovie,f_rec=first_rec_dict)
+				while i < 5:
+					testmovie=(recommendations[i]["Name"])
+					mid=db.getMovieID(testmovie)
+
+					# 5.
+					if db.getMovieInfo(mid) == None:
+						dat=api.getOMDBdata(testmovie,False)
+						db.addMovieInfo(dat["imdbID"],dat["Title"],dat["Poster"],dat["Plot"])
+						testmovie=dat["Title"]
+
+					currID = db.getMovieID(testmovie)
+					recommendedmovie[testmovie]=db.getMovieInfo(currID)
+					recommendedmovie[testmovie].append(currID)
+					print(recommendedmovie[testmovie])
+					i+=1
+				print(recommendedmovie)
+				#print(f_rec)
+			
+				return render_template("profile.html",user=currUserProfile, movielist=ml,recmovies=recommendedmovie,f_rec=first_rec_dict)
+			except:
+				return render_template("err.html")
 	else:
 		return redirect(url_for("input_field_page"))
 

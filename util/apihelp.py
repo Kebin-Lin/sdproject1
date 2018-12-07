@@ -28,7 +28,10 @@ def getTasteDiveData(movies):
 	req=urlrequest.Request(recurl,headers={'User-Agent': 'Mozilla/5.0'})
 	urlobj=urlrequest.urlopen(req)
 	data=json.load(urlobj)
-	return data["Similar"]["Results"]
+	try:
+		return data["Similar"]["Results"]
+	except:
+		return 0
 
 def getOMDbURL (searchQuery, pageNum):
 	'''
